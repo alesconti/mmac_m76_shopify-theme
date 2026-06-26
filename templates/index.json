@@ -1,73 +1,50 @@
 {
   "sections": {
-    "m76-ticker-1": {
-      "type": "m76-ticker",
-      "settings": {
-        "items": "Vendita · Noleggio · Restauro · Certificazione · Consulenza · Oltre 2400 pezzi · Dal 2016",
-        "speed": 50
-      }
-    },
     "m76-hero-1": {
       "type": "m76-hero",
-      "settings": {
-        "height": 90,
-        "eyebrow": "Design Italiano",
-        "quote": "«I vostri figli e nipoti vi ricorderanno anche dai mobili ereditati.»",
-        "author": "— Dino Gavina",
-        "cta1_label": "Sfoglia il catalogo",
-        "cta1_link": "/collections/all",
-        "cta2_label": "Noleggio per set",
-        "cta2_link": "/pages/noleggio"
-      }
-    },
-    "m76-categories-1": {
-      "type": "m76-categories",
       "blocks": {
-        "cat-sedute": {
-          "type": "category",
+        "slide-1": {
+          "type": "slide",
           "settings": {
-            "name": "Sedute",
-            "sub": "Poltrone, divani, sedie",
-            "link": "/collections/sedute"
+            "caption": "Showroom Milano · via Merano 18"
           }
         },
-        "cat-tavoli": {
-          "type": "category",
+        "slide-2": {
+          "type": "slide",
           "settings": {
-            "name": "Tavoli",
-            "sub": "Da pranzo, caffè, consolle",
-            "link": "/collections/tavoli"
+            "caption": "Design italiano e internazionale"
           }
         },
-        "cat-lampade": {
-          "type": "category",
+        "slide-3": {
+          "type": "slide",
           "settings": {
-            "name": "Lampade",
-            "sub": "Lampadari, terra, tavolo",
-            "link": "/collections/lampade"
-          }
-        },
-        "cat-mobili": {
-          "type": "category",
-          "settings": {
-            "name": "Mobili",
-            "sub": "Librerie, cassettiere, credenze",
-            "link": "/collections/mobili"
+            "caption": "Modernariato · Pezzi unici"
           }
         }
       },
-      "block_order": ["cat-sedute", "cat-tavoli", "cat-lampade", "cat-mobili"],
+      "block_order": ["slide-1", "slide-2", "slide-3"],
       "settings": {
-        "heading": "Esplora per categoria",
-        "link_label": "Tutto il catalogo →",
-        "link": "/collections/all"
+        "eyebrow": "Milano · via Merano 18 · dal 2016",
+        "quote": "«I vostri figli e i vostri nipoti vi ricorderanno e vi giudicheranno anche dai mobili ereditati.»",
+        "author": "— Dino Gavina",
+        "cta1_label": "Scopri i prodotti",
+        "cta1_link": "/collections/all",
+        "cta2_label": "Richiedi noleggio",
+        "cta2_link": "/pages/noleggio"
+      }
+    },
+    "m76-ticker-1": {
+      "type": "m76-ticker",
+      "settings": {
+        "items": "Restauro artigianale · Acquisto e vendita · Noleggio per set ed eventi · Ritiro arredi usati · Lun–Sab · 10:00–19:30",
+        "speed": 50
       }
     },
     "m76-featured-1": {
       "type": "m76-featured-products",
       "settings": {
-        "heading": "Pezzi in evidenza",
-        "link_label": "Vedi tutti i prodotti",
+        "heading": "Ultimi arrivi",
+        "link_label": "Vedi tutti",
         "products_count": 4,
         "columns": "4"
       }
@@ -75,21 +52,22 @@
     "m76-editorial-1": {
       "type": "m76-editorial",
       "settings": {
-        "image_position": "right",
-        "eyebrow": "Chi siamo",
+        "image_position": "left",
+        "eyebrow": "Modernariato · Antiquariato · Design storicizzato",
         "title": "Non un semplice magazzino.",
-        "body": "Magazzino76 nasce nel 2016 come spazio dedicato all'arredo vintage, al design storicizzato e all'antiquariato italiano e internazionale. Una selezione curata di pezzi autentici, restaurati e pronti per nuove storie.",
-        "body2": "Ogni pezzo che entra nel nostro magazzino viene valutato, restaurato — se necessario — e certificato prima di essere proposto in vendita o noleggio.",
-        "cta_label": "Scopri di più",
+        "body": "Magazzino76 è un negozio e uno spazio espositivo in continua evoluzione, dove convivono arredi di antiquariato, modernariato e design italiano e internazionale, insieme a pezzi unici da collezione, tutti disponibili per l'acquisto o il noleggio.",
+        "body2": "Fondato nel 2016 da Federico Bellucci nel cuore di via Padova a Milano, Magazzino76 è il risultato della passione e dell'esperienza di un team che ogni giorno ricerca mobili, oggetti e complementi d'arredo capaci di raccontare una storia.",
+        "body3": "Oggi Magazzino76 si trova in via Merano 18, sempre a Milano, in una corte più ampia, funzionale e accogliente, che riflette al meglio la sua identità e la sua continua evoluzione.",
+        "cta_label": "Scopri chi siamo",
         "cta_link": "/pages/chi-siamo",
-        "stat1_n": "2.400+",
-        "stat1_l": "Pezzi in catalogo",
-        "stat2_n": "Dal 2016",
-        "stat2_l": "Anni di attività",
-        "stat3_n": "Tutta Italia",
-        "stat3_l": "Consegna disponibile",
+        "stat1_n": "10+",
+        "stat1_l": "anni di attività",
+        "stat2_n": "2.400+",
+        "stat2_l": "pezzi in catalogo",
+        "stat3_n": "400+",
+        "stat3_l": "designer rappresentati",
         "stat4_n": "100%",
-        "stat4_l": "Pezzi originali e autentici"
+        "stat4_l": "restauro artigianale"
       }
     },
     "m76-services-1": {
@@ -99,8 +77,8 @@
           "type": "service",
           "settings": {
             "icon": "bag",
-            "title": "Vendita",
-            "desc": "Antiquariato, modernariato e design d'autore. Ogni pezzo è selezionato, restaurato e certificato prima di entrare in catalogo.",
+            "title": "Acquisto & Vendita",
+            "desc": "Pezzi unici di antiquariato, modernariato e design. Ritiriamo anche arredi usati da privati e aziende, offrendo una seconda vita a mobili e oggetti di valore.",
             "link_label": "Sfoglia il catalogo",
             "link": "/collections/all"
           }
@@ -108,7 +86,7 @@
         "srv-noleggio": {
           "type": "service",
           "settings": {
-            "icon": "camera",
+            "icon": "calendar",
             "title": "Noleggio & Set",
             "desc": "Arredi per set fotografici, cinematografici, eventi e allestimenti temporanei. Tutto è visionabile tramite catalogo online o con appuntamento presso lo showroom.",
             "link_label": "Richiedi un preventivo",
@@ -134,18 +112,18 @@
     "m76-newsletter-1": {
       "type": "m76-newsletter",
       "settings": {
-        "title": "Rimani aggiornato",
-        "sub": "Nuovi arrivi, storie di restauro e appuntamenti in showroom.",
+        "title": "Non perdere nessun arrivo.",
+        "sub": "Nuovi pezzi, eventi in store, storie dal magazzino. Nella tua inbox, senza spam.",
         "placeholder": "La tua email",
         "btn_label": "Iscriviti",
+        "note": "Puoi disiscriverti in qualsiasi momento.",
         "success_msg": "Grazie! Ti aggiorneremo sui nuovi arrivi."
       }
     }
   },
   "order": [
-    "m76-ticker-1",
     "m76-hero-1",
-    "m76-categories-1",
+    "m76-ticker-1",
     "m76-featured-1",
     "m76-editorial-1",
     "m76-services-1",

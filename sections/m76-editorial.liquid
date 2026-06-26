@@ -114,6 +114,10 @@
       <p class="m76-editorial__body">{{ section.settings.body2 }}</p>
     {%- endif -%}
 
+    {%- if section.settings.body3 != blank -%}
+      <p class="m76-editorial__body">{{ section.settings.body3 }}</p>
+    {%- endif -%}
+
     {%- if section.settings.cta_label != blank -%}
       <a href="{{ section.settings.cta_link }}" class="m76-editorial__cta">
         {{ section.settings.cta_label }}
@@ -198,6 +202,11 @@
       "type": "textarea",
       "id": "body2",
       "label": "Testo (paragrafo 2, opzionale)"
+    },
+    {
+      "type": "textarea",
+      "id": "body3",
+      "label": "Testo (paragrafo 3, opzionale)"
     },
     {
       "type": "text",
