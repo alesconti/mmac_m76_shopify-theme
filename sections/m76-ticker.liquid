@@ -1,0 +1,75 @@
+<style>
+.m76-ticker { background: #1d2440; overflow: hidden; padding: 18px 0; }
+.m76-ticker__track { display: flex; width: max-content; animation: m76TickerScroll {{ section.settings.speed }}s linear infinite; }
+.m76-ticker:hover .m76-ticker__track { animation-play-state: paused; }
+.m76-ticker__item {
+  padding: 0 40px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #f4f4d0;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.m76-ticker__item svg { width: 17px; height: 17px; stroke: #f4f4d0; fill: none; stroke-width: 2; opacity: .6; flex-shrink: 0; }
+.m76-ticker__sep { width: 4px; height: 4px; border-radius: 50%; background: #f4f4d0; opacity: .25; flex-shrink: 0; }
+@keyframes m76TickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+
+{%- assign items = section.settings.items | split: '·' -%}
+
+<div class="m76-ticker" aria-hidden="true">
+  <div class="m76-ticker__track">
+    {%- comment -%} First set {%- endcomment -%}
+    {%- for item in items -%}
+      {%- assign label = item | strip -%}
+      {%- if label != blank -%}
+        <span class="m76-ticker__item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5" fill="#f4f4d0" stroke="none"/></svg>
+          {{ label }}
+        </span>
+        <span class="m76-ticker__sep"></span>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
+    {%- for item in items -%}
+      {%- assign label = item | strip -%}
+      {%- if label != blank -%}
+        <span class="m76-ticker__item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5" fill="#f4f4d0" stroke="none"/></svg>
+          {{ label }}
+        </span>
+        <span class="m76-ticker__sep"></span>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ticker scorrevole",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "items",
+      "label": "Voci (separate da ·)",
+      "default": "Vendita · Noleggio · Restauro · Certificazione · Consulenza · Oltre 2400 pezzi · Dal 2016"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "s",
+      "label": "Velocità animazione",
+      "default": 50
+    }
+  ],
+  "presets": [{ "name": "Ticker M76" }]
+}
+{% endschema %}

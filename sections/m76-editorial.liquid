@@ -1,0 +1,225 @@
+<style>
+.m76-editorial { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+.m76-editorial--img-right .m76-editorial__photo { order: 2; }
+.m76-editorial--img-right .m76-editorial__text  { order: 1; }
+.m76-editorial__photo { overflow: hidden; background: #f8f8f4; }
+.m76-editorial__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.m76-editorial__text {
+  padding: 80px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fff;
+}
+.m76-editorial__eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8a8c96;
+  margin: 0 0 22px;
+}
+.m76-editorial__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 400;
+  color: #1d2440;
+  line-height: 1.3;
+  margin: 0 0 24px;
+}
+.m76-editorial__body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  color: #8a8c96;
+  line-height: 1.85;
+  margin: 0 0 18px;
+}
+.m76-editorial__cta {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: #1d2440;
+  padding: 16px 32px;
+  display: inline-block;
+  margin-top: 14px;
+  transition: opacity .2s;
+}
+.m76-editorial__cta:hover { opacity: .8; }
+.m76-editorial__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid #e4e4dc;
+  margin-top: 32px;
+  padding-top: 32px;
+}
+.m76-editorial__stat { padding: 0 0 24px; }
+.m76-editorial__stat-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  color: #1d2440;
+  margin: 0 0 6px;
+}
+.m76-editorial__stat-l {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8c96;
+}
+@media (max-width: 989px) {
+  .m76-editorial { grid-template-columns: 1fr; }
+  .m76-editorial__photo { height: 60vw; min-height: 260px; order: 1 !important; }
+  .m76-editorial__text { padding: 48px 20px; order: 2 !important; }
+  .m76-editorial__title { font-size: 30px; }
+}
+</style>
+
+<section class="m76-editorial{% if section.settings.image_position == 'right' %} m76-editorial--img-right{% endif %}">
+
+  <div class="m76-editorial__photo">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 1200
+        | image_tag:
+          loading: 'lazy',
+          sizes: '(max-width: 989px) 100vw, 50vw',
+          widths: '550, 800, 1100, 1200'
+      }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <div class="m76-editorial__text">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="m76-editorial__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h2 class="m76-editorial__title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.body != blank -%}
+      <p class="m76-editorial__body">{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.body2 != blank -%}
+      <p class="m76-editorial__body">{{ section.settings.body2 }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <a href="{{ section.settings.cta_link }}" class="m76-editorial__cta">
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+
+    {%- assign has_stats = false -%}
+    {%- if section.settings.stat1_n != blank or section.settings.stat2_n != blank or section.settings.stat3_n != blank or section.settings.stat4_n != blank -%}
+      {%- assign has_stats = true -%}
+    {%- endif -%}
+
+    {%- if has_stats -%}
+      <div class="m76-editorial__stats">
+        {%- if section.settings.stat1_n != blank -%}
+          <div class="m76-editorial__stat">
+            <div class="m76-editorial__stat-n">{{ section.settings.stat1_n }}</div>
+            <div class="m76-editorial__stat-l">{{ section.settings.stat1_l }}</div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stat2_n != blank -%}
+          <div class="m76-editorial__stat">
+            <div class="m76-editorial__stat-n">{{ section.settings.stat2_n }}</div>
+            <div class="m76-editorial__stat-l">{{ section.settings.stat2_l }}</div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stat3_n != blank -%}
+          <div class="m76-editorial__stat">
+            <div class="m76-editorial__stat-n">{{ section.settings.stat3_n }}</div>
+            <div class="m76-editorial__stat-l">{{ section.settings.stat3_l }}</div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stat4_n != blank -%}
+          <div class="m76-editorial__stat">
+            <div class="m76-editorial__stat-n">{{ section.settings.stat4_n }}</div>
+            <div class="m76-editorial__stat-l">{{ section.settings.stat4_l }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sezione editoriale",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Posizione immagine",
+      "options": [
+        { "value": "left",  "label": "Sinistra" },
+        { "value": "right", "label": "Destra" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Occhiello",
+      "default": "Chi siamo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titolo",
+      "default": "Non un semplice magazzino."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Testo (paragrafo 1)",
+      "default": "Magazzino76 nasce nel 2016 come spazio dedicato all'arredo vintage, al design storicizzato e all'antiquariato italiano e internazionale. Una selezione curata di pezzi autentici, restaurati e pronti per nuove storie."
+    },
+    {
+      "type": "textarea",
+      "id": "body2",
+      "label": "Testo (paragrafo 2, opzionale)"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Testo pulsante",
+      "default": "Scopri di più"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link pulsante"
+    },
+    { "type": "header", "content": "Statistiche" },
+    { "type": "text", "id": "stat1_n", "label": "Statistica 1 — numero", "default": "2.400+" },
+    { "type": "text", "id": "stat1_l", "label": "Statistica 1 — etichetta", "default": "Pezzi in catalogo" },
+    { "type": "text", "id": "stat2_n", "label": "Statistica 2 — numero", "default": "Dal 2016" },
+    { "type": "text", "id": "stat2_l", "label": "Statistica 2 — etichetta", "default": "Anni di attività" },
+    { "type": "text", "id": "stat3_n", "label": "Statistica 3 — numero", "default": "Tutta Italia" },
+    { "type": "text", "id": "stat3_l", "label": "Statistica 3 — etichetta", "default": "Consegna disponibile" },
+    { "type": "text", "id": "stat4_n", "label": "Statistica 4 — numero", "default": "100%" },
+    { "type": "text", "id": "stat4_l", "label": "Statistica 4 — etichetta", "default": "Pezzi originali e autentici" }
+  ],
+  "presets": [{ "name": "Editoriale M76" }]
+}
+{% endschema %}
