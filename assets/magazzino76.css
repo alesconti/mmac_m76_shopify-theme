@@ -1,0 +1,364 @@
+/* ============================================================
+   MAGAZZINO76 — Custom design system CSS
+   Load this AFTER base.css in theme.liquid
+   ============================================================ */
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --m76-navy:   #1d2440;
+  --m76-butter: #f4f4d0;
+  --m76-off:    #f8f8f4;
+  --m76-muted:  #8a8c96;
+  --m76-border: #e4e4dc;
+  --m76-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --m76-sans:   'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* ── GLOBAL OVERRIDES ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--m76-sans);
+  background-color: #fff;
+  color: var(--m76-navy);
+  text-wrap: pretty;
+  margin: 0;
+}
+
+img { display: block; max-width: 100%; }
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--m76-serif);
+  font-weight: 400;
+  color: var(--m76-navy);
+}
+
+/* ============================================================
+   M76 NAVIGATION
+   ============================================================ */
+.m76-header-outer {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: #fff;
+  border-bottom: 1px solid var(--m76-border);
+}
+
+.m76-nav {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  background: #fff;
+}
+
+/* Logo */
+.m76-nav__logo { display: flex; align-items: center; text-decoration: none; }
+.m76-nav__logo img { height: 36px; width: auto; }
+.m76-nav__logo-text {
+  font-family: var(--m76-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--m76-navy);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* Desktop nav links */
+.m76-nav__links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.m76-nav__link {
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--m76-navy);
+  text-decoration: none;
+  transition: opacity .2s;
+  font-weight: 400;
+}
+.m76-nav__link:hover { opacity: .4; }
+.m76-nav__link--active {
+  border-bottom: 1.5px solid var(--m76-navy);
+  padding-bottom: 2px;
+}
+
+/* Icons */
+.m76-nav__icons { display: flex; gap: 22px; align-items: center; }
+
+.m76-nav__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: opacity .2s;
+  color: var(--m76-navy);
+  text-decoration: none;
+}
+.m76-nav__icon:hover { opacity: .4; }
+.m76-nav__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--m76-navy);
+  fill: none;
+  stroke-width: 1.4;
+}
+
+/* Cart count bubble */
+.m76-cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: var(--m76-navy);
+  color: #fff;
+  font-family: var(--m76-sans);
+  font-size: 10px;
+  font-weight: 500;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Hamburger (mobile only) */
+.m76-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.m76-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--m76-navy);
+}
+
+/* ── OVERLAY ── */
+.m76-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(29, 36, 64, .5);
+  z-index: 300;
+}
+.m76-overlay.is-open { display: block; }
+
+/* ── MOBILE DRAWER ── */
+.m76-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 300px;
+  background: #fff;
+  z-index: 400;
+  padding: 24px 28px 40px;
+  transform: translateX(-100%);
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.m76-drawer.is-open { transform: translateX(0); }
+
+.m76-drawer__head { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+.m76-drawer__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+.m76-drawer__close svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--m76-navy);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.m76-drawer__nav { list-style: none; margin: 20px 0 0; padding: 0; }
+.m76-drawer__nav li a {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--m76-navy);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--m76-border);
+  transition: opacity .2s;
+}
+.m76-drawer__nav li a:hover { opacity: .5; }
+
+/* ============================================================
+   M76 FOOTER
+   ============================================================ */
+.m76-footer {
+  background: var(--m76-navy);
+  padding: 64px 52px 28px;
+  font-family: var(--m76-sans);
+}
+
+.m76-footer__top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* Logo column */
+.m76-footer__logo img { height: 28px; width: auto; filter: brightness(0) invert(1); opacity: .85; margin-bottom: 20px; }
+.m76-footer__tagline {
+  font-family: var(--m76-serif);
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255, 255, 255, .3);
+  line-height: 1.7;
+  max-width: 220px;
+  margin: 0;
+}
+
+/* Link columns */
+.m76-footer__col-title {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .35);
+  margin: 0 0 20px;
+}
+
+.m76-footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.m76-footer__links li a,
+.m76-footer__links li span {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .55);
+  text-decoration: none;
+  transition: color .2s;
+  display: block;
+}
+.m76-footer__links li a:hover { color: #fff; }
+
+/* Bottom bar */
+.m76-footer__bottom {
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.m76-footer__copy {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .2);
+  margin: 0;
+}
+.m76-footer__social { display: flex; gap: 20px; }
+.m76-footer__social a {
+  display: flex;
+  align-items: center;
+  transition: opacity .2s;
+}
+.m76-footer__social svg {
+  width: 17px;
+  height: 17px;
+  stroke: rgba(255, 255, 255, .35);
+  fill: none;
+  stroke-width: 1.4;
+  transition: stroke .2s;
+}
+.m76-footer__social a:hover svg { stroke: rgba(255, 255, 255, .85); }
+
+/* ============================================================
+   M76 BUTTONS
+   ============================================================ */
+.m76-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--m76-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .2s;
+  border: none;
+  padding: 16px 32px;
+}
+.m76-btn--primary { background: var(--m76-navy); color: #fff; }
+.m76-btn--primary:hover { opacity: .85; }
+.m76-btn--outline { background: transparent; color: var(--m76-navy); border: 1px solid var(--m76-border); }
+.m76-btn--outline:hover { background: var(--m76-navy); color: #fff; border-color: var(--m76-navy); }
+
+/* ============================================================
+   M76 TICKER (add to homepage via section)
+   ============================================================ */
+.m76-ticker { background: var(--m76-navy); overflow: hidden; padding: 18px 0; }
+.m76-ticker__track { display: flex; width: max-content; animation: m76Scroll 50s linear infinite; }
+.m76-ticker__item {
+  padding: 0 40px;
+  font-family: var(--m76-sans);
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--m76-butter);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.m76-ticker__item svg { width: 17px; height: 17px; stroke: var(--m76-butter); fill: none; stroke-width: 2; opacity: .6; flex-shrink: 0; }
+.m76-ticker__sep { width: 4px; height: 4px; border-radius: 50%; background: var(--m76-butter); opacity: .25; flex-shrink: 0; }
+
+@keyframes m76Scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 989px) {
+  .m76-nav { padding: 0 20px; height: 56px; }
+  .m76-nav__links { display: none; }
+  .m76-hamburger { display: flex; }
+
+  .m76-footer { padding: 48px 20px 24px; }
+  .m76-footer__top { grid-template-columns: 1fr; gap: 32px; }
+  .m76-footer__bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+@media (max-width: 749px) {
+  .m76-footer__top { grid-template-columns: 1fr; }
+}
