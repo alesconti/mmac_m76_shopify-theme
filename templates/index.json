@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "m76-hero-1": {
@@ -6,23 +15,30 @@
         "slide-1": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Magazzino76_interni00072.jpg",
             "caption": "Showroom Milano · via Merano 18"
           }
         },
         "slide-2": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Magazzino76_interni00036.jpg",
             "caption": "Design italiano e internazionale"
           }
         },
         "slide-3": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Magazzino76_interni00062.jpg",
             "caption": "Modernariato · Pezzi unici"
           }
         }
       },
-      "block_order": ["slide-1", "slide-2", "slide-3"],
+      "block_order": [
+        "slide-1",
+        "slide-2",
+        "slide-3"
+      ],
       "settings": {
         "eyebrow": "Milano · via Merano 18 · dal 2016",
         "quote": "«I vostri figli e i vostri nipoti vi ricorderanno e vi giudicheranno anche dai mobili ereditati.»",
@@ -35,8 +51,51 @@
     },
     "m76-ticker-1": {
       "type": "m76-ticker",
+      "blocks": {
+        "tick-1": {
+          "type": "item",
+          "settings": {
+            "label": "Lun–Sab · 10:00–19:30",
+            "icon": "clock"
+          }
+        },
+        "tick-2": {
+          "type": "item",
+          "settings": {
+            "label": "Restauro artigianale",
+            "icon": "refresh"
+          }
+        },
+        "tick-3": {
+          "type": "item",
+          "settings": {
+            "label": "Acquisto e vendita",
+            "icon": "home"
+          }
+        },
+        "tick-4": {
+          "type": "item",
+          "settings": {
+            "label": "Noleggio per set ed eventi",
+            "icon": "calendar"
+          }
+        },
+        "tick-5": {
+          "type": "item",
+          "settings": {
+            "label": "Ritiro arredi usati",
+            "icon": "truck"
+          }
+        }
+      },
+      "block_order": [
+        "tick-1",
+        "tick-2",
+        "tick-3",
+        "tick-4",
+        "tick-5"
+      ],
       "settings": {
-        "items": "Restauro artigianale · Acquisto e vendita · Noleggio per set ed eventi · Ritiro arredi usati · Lun–Sab · 10:00–19:30",
         "speed": 50
       }
     },
@@ -45,6 +104,7 @@
       "settings": {
         "heading": "Ultimi arrivi",
         "link_label": "Vedi tutti",
+        "collection": "",
         "products_count": 4,
         "columns": "4"
       }
@@ -53,6 +113,7 @@
       "type": "m76-editorial",
       "settings": {
         "image_position": "left",
+        "image": "shopify://shop_images/home.jpg",
         "eyebrow": "Modernariato · Antiquariato · Design storicizzato",
         "title": "Non un semplice magazzino.",
         "body": "Magazzino76 è un negozio e uno spazio espositivo in continua evoluzione, dove convivono arredi di antiquariato, modernariato e design italiano e internazionale, insieme a pezzi unici da collezione, tutti disponibili per l'acquisto o il noleggio.",
@@ -104,7 +165,11 @@
           }
         }
       },
-      "block_order": ["srv-vendita", "srv-noleggio", "srv-restauro"],
+      "block_order": [
+        "srv-vendita",
+        "srv-noleggio",
+        "srv-restauro"
+      ],
       "settings": {
         "heading": "I nostri servizi"
       }

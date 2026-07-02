@@ -19,28 +19,54 @@
 @keyframes m76TickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 </style>
 
-{%- assign items = section.settings.items | split: '·' -%}
+{%- liquid
+  assign icon_clock    = '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>'
+  assign icon_home     = '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'
+  assign icon_calendar = '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>'
+  assign icon_truck    = '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>'
+  assign icon_refresh  = '<polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>'
+  assign icon_star     = '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'
+  assign icon_map      = '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>'
+-%}
 
 <div class="m76-ticker" aria-hidden="true">
   <div class="m76-ticker__track">
-    {%- comment -%} First set {%- endcomment -%}
-    {%- for item in items -%}
-      {%- assign label = item | strip -%}
-      {%- if label != blank -%}
-        <span class="m76-ticker__item">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5" fill="#f4f4d0" stroke="none"/></svg>
-          {{ label }}
+    {%- comment -%}First set{%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.settings.label != blank -%}
+        {%- case block.settings.icon -%}
+          {%- when 'clock' -%}    {%- assign svg_paths = icon_clock -%}
+          {%- when 'home' -%}     {%- assign svg_paths = icon_home -%}
+          {%- when 'calendar' -%} {%- assign svg_paths = icon_calendar -%}
+          {%- when 'truck' -%}    {%- assign svg_paths = icon_truck -%}
+          {%- when 'refresh' -%}  {%- assign svg_paths = icon_refresh -%}
+          {%- when 'star' -%}     {%- assign svg_paths = icon_star -%}
+          {%- when 'map' -%}      {%- assign svg_paths = icon_map -%}
+          {%- else -%}            {%- assign svg_paths = icon_clock -%}
+        {%- endcase -%}
+        <span class="m76-ticker__item" {{ block.shopify_attributes }}>
+          <svg viewBox="0 0 24 24">{{ svg_paths }}</svg>
+          {{ block.settings.label }}
         </span>
         <span class="m76-ticker__sep"></span>
       {%- endif -%}
     {%- endfor -%}
-    {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
-    {%- for item in items -%}
-      {%- assign label = item | strip -%}
-      {%- if label != blank -%}
+    {%- comment -%}Duplicate for seamless loop{%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.settings.label != blank -%}
+        {%- case block.settings.icon -%}
+          {%- when 'clock' -%}    {%- assign svg_paths = icon_clock -%}
+          {%- when 'home' -%}     {%- assign svg_paths = icon_home -%}
+          {%- when 'calendar' -%} {%- assign svg_paths = icon_calendar -%}
+          {%- when 'truck' -%}    {%- assign svg_paths = icon_truck -%}
+          {%- when 'refresh' -%}  {%- assign svg_paths = icon_refresh -%}
+          {%- when 'star' -%}     {%- assign svg_paths = icon_star -%}
+          {%- when 'map' -%}      {%- assign svg_paths = icon_map -%}
+          {%- else -%}            {%- assign svg_paths = icon_clock -%}
+        {%- endcase -%}
         <span class="m76-ticker__item">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5" fill="#f4f4d0" stroke="none"/></svg>
-          {{ label }}
+          <svg viewBox="0 0 24 24">{{ svg_paths }}</svg>
+          {{ block.settings.label }}
         </span>
         <span class="m76-ticker__sep"></span>
       {%- endif -%}
@@ -52,13 +78,8 @@
 {
   "name": "Ticker scorrevole",
   "tag": "div",
+  "max_blocks": 10,
   "settings": [
-    {
-      "type": "text",
-      "id": "items",
-      "label": "Voci (separate da ·)",
-      "default": "Vendita · Noleggio · Restauro · Certificazione · Consulenza · Oltre 2400 pezzi · Dal 2016"
-    },
     {
       "type": "range",
       "id": "speed",
@@ -70,6 +91,45 @@
       "default": 50
     }
   ],
-  "presets": [{ "name": "Ticker M76" }]
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Voce ticker",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Testo"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "options": [
+            { "value": "clock",    "label": "Orologio" },
+            { "value": "home",     "label": "Casa" },
+            { "value": "calendar", "label": "Calendario" },
+            { "value": "truck",    "label": "Camion" },
+            { "value": "refresh",  "label": "Freccia circolare" },
+            { "value": "star",     "label": "Stella" },
+            { "value": "map",      "label": "Mappa / Pin" }
+          ],
+          "default": "clock"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ticker M76",
+      "blocks": [
+        { "type": "item", "settings": { "label": "Lun–Sab · 10:00–19:30", "icon": "clock" } },
+        { "type": "item", "settings": { "label": "Restauro artigianale",   "icon": "refresh" } },
+        { "type": "item", "settings": { "label": "Acquisto e vendita",     "icon": "home" } },
+        { "type": "item", "settings": { "label": "Noleggio per set ed eventi", "icon": "calendar" } },
+        { "type": "item", "settings": { "label": "Ritiro arredi usati",    "icon": "truck" } }
+      ]
+    }
+  ]
 }
 {% endschema %}

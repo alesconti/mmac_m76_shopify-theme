@@ -2,7 +2,10 @@
 .m76-hero-split {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  min-height: 90vh;
+  height: 70vh;
+  max-height: 720px;
+  min-height: 480px;
+  overflow: hidden;
 }
 
 /* ── LEFT: testo ── */
@@ -12,6 +15,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 80px 60px 80px 52px;
+  overflow: hidden;
 }
 .m76-hero-split__eyebrow {
   font-family: 'Poppins', sans-serif;
