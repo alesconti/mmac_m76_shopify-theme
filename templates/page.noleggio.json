@@ -1,0 +1,87 @@
+{
+  "sections": {
+    "hero": {
+      "type": "m76-page-hero",
+      "settings": {
+        "image": "shopify://shop_images/Magazzino76_interni00062.jpg",
+        "title": "Noleggio",
+        "subtitle": "Arredi autentici per set fotografici, cinematografici, eventi e allestimenti temporanei."
+      }
+    },
+    "intro": {
+      "type": "m76-intro-stats",
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": { "value": "2.400+", "label": "Pezzi in catalogo" }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": { "value": "Dal 2016", "label": "Anni di attività" }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": { "value": "Tutta Italia", "label": "" }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": { "value": "100%", "label": "Pezzi originali e autentici" }
+        }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"],
+      "settings": {
+        "heading": "Oltre 2.400 pezzi a disposizione dei professionisti.",
+        "body": "<p>Il nostro catalogo, composto da pezzi storicizzati e d'autore, è disponibile per il noleggio professionale e personale. Vi aiutiamo a trovare il giusto pezzo per ogni progetto, tramite appuntamento o via mail. Lavoriamo con fotografi, registi, scenografi, architetti e brand: dall'editoriale di moda alla campagna pubblicitaria, dal set cinematografico alla fiera del settore. Tutto è noleggiabile, i set così come gli arredi modulari sono scomponibili.</p>",
+        "cta_label": "Richiedi un preventivo",
+        "cta_link": "#preventivo"
+      }
+    },
+    "steps": {
+      "type": "m76-steps",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "title": "Richiedi un preventivo",
+            "text": "Compilate il form con tutte le informazioni di progetto, date, quantità e materie dei pezzi cercati. Vi invieremo un preventivo entro 24 ore."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "title": "Prendi appuntamento",
+            "text": "Vi invitiamo in showroom a Milano oppure vi proponiamo una selezione fotografica del catalogo su misura del vostro progetto."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "title": "Consegna e ritiro",
+            "text": "Non ci occupiamo direttamente di consegna e ritiro ma, se richiesto, vi forniamo i contatti di alcune aziende di trasporto esterno che potranno supportarvi."
+          }
+        }
+      },
+      "block_order": ["step-1", "step-2", "step-3"],
+      "settings": {
+        "heading": "Come funziona"
+      }
+    },
+    "form": {
+      "type": "m76-quote-form",
+      "settings": {
+        "eyebrow": "Contattaci",
+        "heading": "Richiedi un preventivo.",
+        "body": "<p>Compilate il modulo con le vostre esigenze. Vi risponderemo entro 24 ore con una proposta su misura o un invito in showroom per la selezione dei pezzi.</p>",
+        "select1_label": "Tipo di progetto",
+        "select1_options": "Set fotografico\nSet cinematografico\nEvento aziendale\nAllestimento / fiera\nScenografia teatrale\nAltro",
+        "select2_options": "",
+        "show_dates": true,
+        "items_label": "Pezzi o categorie di interesse",
+        "items_placeholder": "Es: 4 sedie anni '50, 1 tavolo anni '70, lampade modernariato, specchi...",
+        "notes_placeholder": "Luogo di consegna, esigenze particolari di trasporto...",
+        "submit_label": "Invia richiesta"
+      }
+    }
+  },
+  "order": ["hero", "intro", "steps", "form"]
+}

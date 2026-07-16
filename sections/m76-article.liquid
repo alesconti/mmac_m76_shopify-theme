@@ -1,0 +1,77 @@
+<style>
+.m76-article {
+  padding: 72px 52px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.m76-article__back {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8a8c96;
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color .2s;
+}
+.m76-article__back:hover { color: #1d2440; }
+.m76-article__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 3vw, 44px);
+  font-weight: 400;
+  color: #1d2440;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+.m76-article__date {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #8a8c96;
+  margin: 0 0 36px;
+}
+.m76-article__image { margin: 0 0 36px; }
+.m76-article__image img { width: 100%; height: auto; display: block; }
+.m76-article__content {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: #1d2440;
+  line-height: 1.85;
+}
+.m76-article__content p { margin: 0 0 18px; }
+.m76-article__content img { max-width: 100%; height: auto; }
+.m76-article__content a { color: #1d2440; }
+.m76-article__content h2, .m76-article__content h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  color: #1d2440;
+}
+@media (max-width: 749px) {
+  .m76-article { padding: 48px 20px; }
+}
+</style>
+
+<article class="m76-article">
+  <a href="{{ blog.url }}" class="m76-article__back">← {{ blog.title }}</a>
+  <h1 class="m76-article__title">{{ article.title }}</h1>
+  <p class="m76-article__date">{{ article.published_at | date: format: 'date' }}</p>
+  {%- if article.image -%}
+    <div class="m76-article__image">
+      {{ article.image | image_url: width: 1600 | image_tag: loading: 'eager', alt: article.image.alt | default: article.title, widths: '600, 900, 1200, 1600' }}
+    </div>
+  {%- endif -%}
+  <div class="m76-article__content">
+    {{ article.content }}
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "M76 Articolo",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

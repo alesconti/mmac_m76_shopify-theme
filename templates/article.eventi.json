@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "article": {
+      "type": "m76-article",
+      "settings": {}
+    }
+  },
+  "order": ["article"]
+}

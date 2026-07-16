@@ -9,8 +9,7 @@
 .m76-prod-card__thumb { position: relative; aspect-ratio: 1; overflow: hidden; background: #f8f8f4; }
 .m76-prod-card__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; display: block; }
 .m76-prod-card:hover .m76-prod-card__thumb img { transform: scale(1.04); }
-.m76-prod-card__badge { position: absolute; top: 12px; left: 12px; background: #f4f4d0; color: #1d2440; font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; }
-.m76-prod-card__badge--new { background: #1d2440; color: #f4f4d0; }
+.m76-prod-card__badge { position: absolute; top: 14px; left: 14px; background: #f4f4d0; color: #1d2440; font-family: 'Poppins', sans-serif; font-size: 8px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 10px; }
 .m76-prod-card__info { padding: 16px 18px 20px; border-bottom: 1px solid #e4e4dc; }
 .m76-prod-card__name { font-family: 'Playfair Display', serif; font-size: 20px; color: #1d2440; margin: 0 0 5px; line-height: 1.35; }
 .m76-prod-card__vendor { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 300; color: #8a8c96; font-style: italic; margin: 0 0 12px; }
@@ -58,22 +57,28 @@
             {%- else -%}
               {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
-            {%- if product.metafields.custom.badge != blank -%}
-              <span class="m76-prod-card__badge">{{ product.metafields.custom.badge }}</span>
+            {%- if product.metafields.m76.rental_only.value -%}
+              <span class="m76-prod-card__badge">{{ 'm76.general.rental_only' | t }}</span>
             {%- elsif product.tags contains 'nuovo-arrivo' -%}
-              <span class="m76-prod-card__badge m76-prod-card__badge--new">Appena arrivato</span>
+              <span class="m76-prod-card__badge">{{ 'm76.general.new_arrival' | t }}</span>
             {%- endif -%}
           </div>
           <div class="m76-prod-card__info">
             <p class="m76-prod-card__name">{{ product.title }}</p>
-            <p class="m76-prod-card__vendor">{{ product.vendor }}</p>
+            {%- liquid
+              assign creators = product.metafields.m76.creator.value
+              assign vendor_label = creators[0] | default: creators[1] | default: product.vendor
+            -%}
+            <p class="m76-prod-card__vendor">{{ vendor_label }}</p>
             <div class="m76-prod-card__foot">
               <span class="m76-prod-card__type">{{ product.type }}</span>
               <span class="m76-prod-card__price">
-                {%- if product.price == 0 -%}
-                  Su richiesta
+                {%- if product.metafields.m76.rental_only.value -%}
+                  {{ 'm76.general.rental_only' | t }}
+                {%- elsif product.price == 0 -%}
+                  {{ 'm76.general.on_request' | t }}
                 {%- else -%}
-                  {{ product.price | money }}
+                  {{ product.price | money_without_currency | remove: ',00' }} €
                 {%- endif -%}
               </span>
             </div>
@@ -89,7 +94,7 @@
             <p class="m76-prod-card__vendor">Designer / Produttore</p>
             <div class="m76-prod-card__foot">
               <span class="m76-prod-card__type">1960 ca.</span>
-              <span class="m76-prod-card__price">Su richiesta</span>
+              <span class="m76-prod-card__price">{{ 'm76.general.on_request' | t }}</span>
             </div>
           </div>
         </div>

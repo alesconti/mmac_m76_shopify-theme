@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "hero": {
+      "type": "m76-page-hero",
+      "settings": {
+        "image": "shopify://shop_images/Magazzino76_interni00072.jpg",
+        "title": "Eventi",
+        "subtitle": "Lo showroom di via Merano 18 ospita eventi, presentazioni e shooting."
+      }
+    },
+    "intro": {
+      "type": "m76-intro-stats",
+      "settings": {
+        "heading": "Uno spazio vivo, non solo un negozio.",
+        "body": "<p>Magazzino76 apre le sue porte a eventi in store, collaborazioni e progetti speciali: presentazioni, mostre temporanee, shooting fotografici e serate dedicate al design. Seguiteci o iscrivetevi alla newsletter per non perdere i prossimi appuntamenti.</p>",
+        "cta_label": "Contattaci per il tuo evento",
+        "cta_link": "/pages/contatti"
+      }
+    },
+    "newsletter": {
+      "type": "m76-newsletter",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "intro", "newsletter"]
+}

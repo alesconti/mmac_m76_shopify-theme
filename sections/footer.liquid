@@ -29,7 +29,7 @@
         <p style="font-family:var(--m76-serif);font-size:20px;color:#fff;margin:0 0 16px;">{{ shop.name }}</p>
       {%- endif -%}
       {%- if section.settings.tagline != blank -%}
-        <p class="m76-footer__tagline">{{ section.settings.tagline }}</p>
+        <p class="m76-footer__tagline">{{ section.settings.tagline | newline_to_br }}</p>
       {%- endif -%}
     </div>
 
@@ -58,7 +58,7 @@
             {%- endif -%}
             {%- if block.settings.subtext != blank -%}
               <ul class="m76-footer__links" role="list">
-                {%- assign lines = block.settings.subtext | strip_html | split: "\n" -%}
+                {%- assign lines = block.settings.subtext | strip_html | newline_to_br | split: '<br />' -%}
                 {%- for line in lines -%}
                   {%- assign l = line | strip -%}
                   {%- if l != blank -%}
@@ -112,7 +112,7 @@
       "type": "textarea",
       "id": "tagline",
       "label": "Tagline sotto il logo",
-      "default": "«Vi giudicheranno anche dai mobili ereditati.»\n— Dino Gavina"
+      "default": "ANTIQUARIATO\nMODERNARIATO\nDESIGN STORICIZZATO"
     },
     {
       "type": "text",

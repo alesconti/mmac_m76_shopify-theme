@@ -104,7 +104,7 @@
       "settings": {
         "heading": "Ultimi arrivi",
         "link_label": "Vedi tutti",
-        "collection": "",
+        "collection": "frontpage",
         "products_count": 4,
         "columns": "4"
       }
@@ -159,7 +159,7 @@
           "settings": {
             "icon": "tool",
             "title": "Restauro Artigianale",
-            "desc": "Laboratorio interno con rete di artigiani: falegnami, tappezzieri, impagliatori, marmisti e tanto altro. Ogni pezzo è restaurato prima di essere messo in vendita.",
+            "desc": "Laboratorio interno con rete di artigiani: falegnami, tappezzieri, impagliatori, marmisti e tanto altro. Ogni pezzo è restaurato da mani esperte prima di essere messo in vendita.",
             "link_label": "Scopri il servizio",
             "link": "/pages/restauro"
           }

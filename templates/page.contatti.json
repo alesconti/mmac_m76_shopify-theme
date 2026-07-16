@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": {
+      "type": "m76-page-hero",
+      "settings": {
+        "image": "shopify://shop_images/Magazzino76_interni00062.jpg",
+        "title": "Contatti",
+        "subtitle": "Showroom a Milano, in via Merano 18. Scriveteci o veniteci a trovare."
+      }
+    },
+    "form": {
+      "type": "m76-quote-form",
+      "settings": {
+        "eyebrow": "Contattaci",
+        "heading": "Scrivici.",
+        "body": "<p>Compilate il modulo per qualsiasi richiesta: informazioni su un pezzo, noleggio, restauro o appuntamenti in showroom. Vi risponderemo entro 24 ore.</p>",
+        "select1_label": "Motivo del contatto",
+        "select1_options": "Informazioni su un prodotto\nNoleggio\nRestauro\nAcquisto e ritiro arredi\nAppuntamento in showroom\nAltro",
+        "select2_options": "",
+        "show_dates": false,
+        "items_label": "Messaggio",
+        "items_placeholder": "Come possiamo aiutarvi?",
+        "show_notes": false,
+        "submit_label": "Invia messaggio"
+      }
+    }
+  },
+  "order": ["hero", "form"]
+}

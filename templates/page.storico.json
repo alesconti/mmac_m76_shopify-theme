@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": {
+      "type": "m76-page-hero",
+      "settings": {
+        "image": "shopify://shop_images/Magazzino76_interni00036.jpg",
+        "title": "Storico",
+        "subtitle": "I pezzi che sono passati dal magazzino: un archivio in continua crescita."
+      }
+    },
+    "intro": {
+      "type": "m76-intro-stats",
+      "settings": {
+        "heading": "Un archivio di storie e di arredi.",
+        "body": "<p>Dal 2016 migliaia di mobili, lampade e oggetti di design sono passati dal magazzino: valutati, restaurati e accompagnati verso una nuova casa. Questa sezione raccoglie una selezione dei pezzi più significativi che hanno fatto parte del nostro catalogo.</p>",
+        "cta_label": "Sfoglia il catalogo attuale",
+        "cta_link": "/collections/all"
+      }
+    },
+    "visita": {
+      "type": "m76-title-band",
+      "settings": {
+        "title": "Cerchi un pezzo?",
+        "text": "<p>Se cercate un pezzo simile a uno già venduto, contattateci: spesso riusciamo a trovare arredi confrontabili grazie alla nostra rete di ricerca.</p>"
+      }
+    }
+  },
+  "order": ["hero", "intro", "visita"]
+}

@@ -1,0 +1,711 @@
+<style>
+.m76-cat { padding: 28px 52px 72px; }
+
+/* Breadcrumb */
+.m76-cat__crumbs {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8c96;
+  margin: 0 0 18px;
+}
+.m76-cat__crumbs a { color: #8a8c96; text-decoration: none; }
+.m76-cat__crumbs a:hover { color: #1d2440; }
+
+/* Header */
+.m76-cat__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 2.8vw, 42px);
+  font-weight: 400;
+  color: #1d2440;
+  margin: 0 0 6px;
+}
+.m76-cat__count {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #8a8c96;
+  margin: 0 0 26px;
+}
+
+/* Toolbar */
+.m76-cat__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.m76-cat__search {
+  position: relative;
+  width: 240px;
+}
+.m76-cat__search input {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #1d2440;
+  border: 1px solid #e4e4dc;
+  background: #fff;
+  padding: 9px 12px 9px 32px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+.m76-cat__search input:focus { outline: none; border-color: #1d2440; }
+.m76-cat__search svg {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+  stroke: #8a8c96;
+  fill: none;
+  stroke-width: 1.5;
+}
+.m76-cat__sortwrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.m76-cat__sortlabel {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8c96;
+}
+.m76-cat__sort {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #1d2440;
+  border: 1px solid #e4e4dc;
+  background: #fff;
+  padding: 9px 30px 9px 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d2440' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  cursor: pointer;
+}
+.m76-cat__sort:focus { outline: none; border-color: #1d2440; }
+
+/* Mobile filter toggle + drawer chrome (hidden on desktop) */
+.m76-cat__filter-toggle {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #1d2440;
+  background: #fff;
+  border: 1px solid #e4e4dc;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.m76-cat__filter-toggle svg { width: 14px; height: 14px; stroke: #1d2440; fill: none; stroke-width: 1.5; }
+.m76-cat__overlay { display: none; }
+.m76-cat__sidebar-head { display: none; }
+
+/* Layout */
+.m76-cat__layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 44px;
+  border-top: 1px solid #e4e4dc;
+  padding-top: 32px;
+}
+
+/* Sidebar */
+.m76-cat__group { margin-bottom: 32px; }
+.m76-cat__group-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1d2440;
+  margin: 0 0 14px;
+}
+.m76-cat__list { list-style: none; margin: 0; padding: 0; }
+.m76-cat__list li { margin-bottom: 9px; }
+.m76-cat__list--scroll {
+  max-height: 228px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #d8d8d0 transparent;
+}
+.m76-cat__list--scroll::-webkit-scrollbar { width: 4px; }
+.m76-cat__list--scroll::-webkit-scrollbar-track { background: transparent; }
+.m76-cat__list--scroll::-webkit-scrollbar-thumb { background: #d8d8d0; }
+.m76-cat__parent-row { display: flex; align-items: center; gap: 6px; }
+.m76-cat__parent-row > a { flex: 1; }
+.m76-cat__toggle {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.m76-cat__toggle svg {
+  width: 11px;
+  height: 11px;
+  stroke: #8a8c96;
+  fill: none;
+  stroke-width: 1.8;
+  transition: transform .18s ease;
+}
+.m76-cat__branch.is-open > .m76-cat__parent-row .m76-cat__toggle svg { transform: rotate(90deg); }
+.m76-cat__sublist {
+  list-style: none;
+  margin: 8px 0 4px;
+  padding: 0 0 0 14px;
+  border-left: 1px solid #e4e4dc;
+  display: none;
+}
+.m76-cat__branch.is-open > .m76-cat__sublist { display: block; }
+.m76-cat__sublist li { margin-bottom: 8px; }
+.m76-cat__sublist a { font-size: 12.5px; }
+.m76-cat__list a,
+.m76-cat__check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #1d2440;
+  text-decoration: none;
+  cursor: pointer;
+}
+.m76-cat__list a:hover { opacity: .55; }
+.m76-cat__list a.is-active { font-weight: 500; }
+.m76-cat__num {
+  font-size: 11px;
+  color: #b9bac2;
+}
+.m76-cat__check input {
+  accent-color: #1d2440;
+  margin: 0 8px 0 0;
+}
+.m76-cat__check .m76-cat__check-label { display: flex; align-items: center; flex: 1; }
+.m76-cat__price-row { display: flex; gap: 8px; }
+.m76-cat__price-row input {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  border: 1px solid #e4e4dc;
+  padding: 7px 8px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+.m76-cat__apply {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: #1d2440;
+  border: none;
+  padding: 10px 18px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.m76-cat__reset {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  color: #8a8c96;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+/* Grid */
+.m76-cat__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e4e4dc;
+  align-self: start;
+}
+.m76-cat__card {
+  background: #fff;
+  text-decoration: none;
+  display: block;
+}
+.m76-cat__thumb {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #f8f8f4;
+}
+.m76-cat__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+.m76-cat__card:hover .m76-cat__thumb img { transform: scale(1.04); }
+.m76-cat__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #f4f4d0;
+  color: #1d2440;
+  font-family: 'Poppins', sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+.m76-cat__info { padding: 16px 18px 20px; }
+.m76-cat__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #1d2440;
+  margin: 0 0 3px;
+  line-height: 1.3;
+}
+.m76-cat__sku {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(29, 36, 64, .25);
+  margin: 0 0 10px;
+}
+.m76-cat__vendor {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  color: #8a8c96;
+  margin: 0 0 14px;
+}
+.m76-cat__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.m76-cat__year {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8a8c96;
+}
+.m76-cat__price {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #1d2440;
+}
+.m76-cat__empty {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #8a8c96;
+  padding: 40px 0;
+  background: #fff;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* Pagination */
+.m76-cat__pagination {
+  margin-top: 40px;
+  display: flex;
+  gap: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.m76-cat__pagination a, .m76-cat__pagination span { color: #1d2440; text-decoration: none; }
+.m76-cat__pagination span.current { border-bottom: 1.5px solid #1d2440; }
+
+@media (max-width: 989px) {
+  .m76-cat { padding: 20px 20px 48px; }
+  .m76-cat__layout { grid-template-columns: 1fr; gap: 0; border-top: none; padding-top: 0; }
+  .m76-cat__grid { grid-template-columns: repeat(2, 1fr); }
+  .m76-cat__toolbar { flex-wrap: wrap; row-gap: 12px; }
+  .m76-cat__filter-toggle { display: inline-flex; }
+  .m76-cat__search { order: 3; width: 100%; }
+  .m76-cat__sortwrap { margin-left: auto; }
+
+  .m76-cat__sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 86vw;
+    max-width: 320px;
+    background: #fff;
+    z-index: 120;
+    padding: 24px 20px 40px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform .28s ease;
+    box-shadow: 8px 0 24px rgba(0, 0, 0, .12);
+  }
+  .m76-cat__sidebar.is-open { transform: translateX(0); }
+
+  .m76-cat__sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e4e4dc;
+  }
+  .m76-cat__sidebar-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1d2440;
+  }
+  .m76-cat__sidebar-close {
+    background: none;
+    border: none;
+    padding: 4px;
+    margin: -4px;
+    cursor: pointer;
+    line-height: 0;
+  }
+  .m76-cat__sidebar-close svg { width: 18px; height: 18px; stroke: #1d2440; fill: none; stroke-width: 1.5; }
+
+  .m76-cat__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(29, 36, 64, .45);
+    z-index: 110;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .28s ease, visibility .28s ease;
+  }
+  .m76-cat__overlay.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+
+  body.m76-cat__lock { overflow: hidden; }
+}
+</style>
+
+{%- liquid
+  assign per_page = section.settings.products_per_page | default: 24
+
+  assign active_count = 0
+  for filter in collection.filters
+    assign active_count = active_count | plus: filter.active_values.size
+    if filter.min_value.value or filter.max_value.value
+      assign active_count = active_count | plus: 1
+    endif
+  endfor
+-%}
+
+<section class="m76-cat">
+  <nav class="m76-cat__crumbs" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">{{ 'm76.general.home' | t }}</a> / {{ collection.title }}
+  </nav>
+  <h1 class="m76-cat__title">{{ collection.title }}</h1>
+  <p class="m76-cat__count">{{ 'm76.general.products_count' | t: count: collection.products_count }}</p>
+
+  <form id="m76-filters" method="get" action="{{ collection.url }}"></form>
+
+  <div class="m76-cat__toolbar">
+    <button
+      type="button"
+      class="m76-cat__filter-toggle"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="m76-cat-sidebar"
+      onclick="
+        document.getElementById('m76-cat-sidebar').classList.add('is-open');
+        document.getElementById('m76-cat-overlay').classList.add('is-open');
+        document.body.classList.add('m76-cat__lock');
+        this.setAttribute('aria-expanded', 'true');
+      "
+    >
+      <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="1.5" fill="#1d2440" stroke="none"/><circle cx="16" cy="12" r="1.5" fill="#1d2440" stroke="none"/><circle cx="11" cy="17" r="1.5" fill="#1d2440" stroke="none"/></svg>
+      {{ 'm76.general.filters' | t }}{% if active_count > 0 %} ({{ active_count }}){% endif %}
+    </button>
+    <form class="m76-cat__search" action="{{ routes.search_url }}" method="get" role="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+      <input type="search" name="q" placeholder="{{ 'm76.general.search_placeholder' | t }}" aria-label="{{ 'm76.general.search_label' | t }}">
+      <input type="hidden" name="type" value="product">
+    </form>
+    <div class="m76-cat__sortwrap">
+      <span class="m76-cat__sortlabel">{{ 'm76.general.sort_by' | t }}</span>
+      <select class="m76-cat__sort" name="sort_by" form="m76-filters" aria-label="{{ 'm76.general.sort_by' | t }}" onchange="this.form.submit()">
+        {%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+        {%- for option in collection.sort_options -%}
+          <option value="{{ option.value }}" {% if option.value == current_sort %}selected{% endif %}>{{ option.name }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  </div>
+
+  <div
+    id="m76-cat-overlay"
+    class="m76-cat__overlay"
+    onclick="
+      document.getElementById('m76-cat-sidebar').classList.remove('is-open');
+      document.getElementById('m76-cat-overlay').classList.remove('is-open');
+      document.body.classList.remove('m76-cat__lock');
+      document.querySelector('.m76-cat__filter-toggle').setAttribute('aria-expanded', 'false');
+    "
+  ></div>
+
+  <div class="m76-cat__layout">
+    <aside id="m76-cat-sidebar" class="m76-cat__sidebar">
+      <div class="m76-cat__sidebar-head">
+        <span class="m76-cat__sidebar-title">{{ 'm76.general.filters' | t }}</span>
+        <button
+          type="button"
+          class="m76-cat__sidebar-close"
+          aria-label="{{ 'm76.general.close_filters' | t }}"
+          onclick="
+            document.getElementById('m76-cat-sidebar').classList.remove('is-open');
+            document.getElementById('m76-cat-overlay').classList.remove('is-open');
+            document.body.classList.remove('m76-cat__lock');
+            document.querySelector('.m76-cat__filter-toggle').setAttribute('aria-expanded', 'false');
+          "
+        >
+          <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="m76-cat__group">
+          <p class="m76-cat__group-title">{{ section.settings.categories_title | default: 'Categoria' }}</p>
+          <ul class="m76-cat__list" role="list">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.parent != blank -%}{%- continue -%}{%- endif -%}
+              {%- assign cat = collections[block.settings.collection] -%}
+              {%- if cat == blank -%}{%- continue -%}{%- endif -%}
+
+              {%- comment -%} Figli di questo genitore + stato attivo del ramo {%- endcomment -%}
+              {%- assign has_children = false -%}
+              {%- assign branch_active = false -%}
+              {%- if cat.handle == collection.handle -%}{%- assign branch_active = true -%}{%- endif -%}
+              {%- for child in section.blocks -%}
+                {%- if child.settings.parent == block.settings.collection -%}
+                  {%- assign has_children = true -%}
+                  {%- if child.settings.collection == collection.handle -%}{%- assign branch_active = true -%}{%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              <li class="m76-cat__branch{% if branch_active %} is-open{% endif %}" {{ block.shopify_attributes }}>
+                <div class="m76-cat__parent-row">
+                  <a href="{{ cat.url }}" {% if cat.handle == collection.handle %}class="is-active" aria-current="page"{% endif %}>
+                    <span>{{ block.settings.label | default: cat.title }}</span>
+                    <span class="m76-cat__num">{{ cat.products_count }}</span>
+                  </a>
+                  {%- if has_children -%}
+                    <button type="button" class="m76-cat__toggle" aria-label="{{ 'm76.general.subcategories_of' | t: title: cat.title }}" onclick="this.closest('.m76-cat__branch').classList.toggle('is-open')">
+                      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+                    </button>
+                  {%- endif -%}
+                </div>
+                {%- if has_children -%}
+                  <ul class="m76-cat__sublist" role="list">
+                    {%- for child in section.blocks -%}
+                      {%- if child.settings.parent == block.settings.collection -%}
+                        {%- assign subcat = collections[child.settings.collection] -%}
+                        {%- if subcat != blank -%}
+                          <li {{ child.shopify_attributes }}>
+                            <a href="{{ subcat.url }}" {% if subcat.handle == collection.handle %}class="is-active" aria-current="page"{% endif %}>
+                              <span>{{ child.settings.label | default: subcat.title }}</span>
+                              <span class="m76-cat__num">{{ subcat.products_count }}</span>
+                            </a>
+                          </li>
+                        {%- endif -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- for filter in collection.filters -%}
+        <div class="m76-cat__group">
+          <p class="m76-cat__group-title">{{ filter.label }}</p>
+          {%- case filter.type -%}
+            {%- when 'boolean', 'list' -%}
+              <ul class="m76-cat__list m76-cat__list--scroll" role="list">
+                {%- for value in filter.values -%}
+                  <li>
+                    <label class="m76-cat__check">
+                      <span class="m76-cat__check-label">
+                        <input
+                          type="checkbox"
+                          name="{{ value.param_name }}"
+                          value="{{ value.value }}"
+                          form="m76-filters"
+                          onchange="this.form.submit()"
+                          {% if value.active %}checked{% endif %}
+                          {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                        >
+                        {{ value.label }}
+                      </span>
+                      <span class="m76-cat__num">{{ value.count }}</span>
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- when 'price_range' -%}
+              <div class="m76-cat__price-row">
+                <input
+                  type="number"
+                  name="{{ filter.min_value.param_name }}"
+                  form="m76-filters"
+                  placeholder="Min"
+                  min="0"
+                  {% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | remove: '.' | remove: ',00' }}"{% endif %}
+                >
+                <input
+                  type="number"
+                  name="{{ filter.max_value.param_name }}"
+                  form="m76-filters"
+                  placeholder="Max"
+                  min="0"
+                  {% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | remove: '.' | remove: ',00' }}"{% endif %}
+                >
+              </div>
+              <button type="submit" class="m76-cat__apply" form="m76-filters">{{ 'm76.general.apply' | t }}</button>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+
+      {%- if active_count > 0 -%}
+        <a class="m76-cat__reset" href="{{ collection.url }}">{{ 'm76.general.reset_filters' | t: count: active_count }}</a>
+      {%- endif -%}
+    </aside>
+
+    <div>
+      {%- paginate collection.products by per_page -%}
+        <div class="m76-cat__grid">
+          {%- for product in collection.products -%}
+            <a class="m76-cat__card" href="{{ product.url }}">
+              <div class="m76-cat__thumb">
+                {%- if product.featured_media -%}
+                  {{
+                    product.featured_media
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      alt: product.featured_media.alt | default: product.title,
+                      sizes: '(max-width: 989px) 50vw, 30vw',
+                      widths: '400, 600, 800'
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+                {%- if product.metafields.m76.rental_only.value -%}
+                  <span class="m76-cat__badge">{{ 'm76.general.rental_only' | t }}</span>
+                {%- elsif product.tags contains 'nuovo-arrivo' -%}
+                  <span class="m76-cat__badge">{{ 'm76.general.new_arrival' | t }}</span>
+                {%- endif -%}
+              </div>
+              <div class="m76-cat__info">
+                <h2 class="m76-cat__name">{{ product.title }}</h2>
+                {%- assign sku = product.selected_or_first_available_variant.sku -%}
+                {%- if sku != blank -%}
+                  <p class="m76-cat__sku">{{ sku }}</p>
+                {%- endif -%}
+                {%- liquid
+                  assign creators = product.metafields.m76.creator.value
+                  assign vendor_label = creators[0] | default: creators[1] | default: product.vendor
+                -%}
+                <p class="m76-cat__vendor">{{ vendor_label }}</p>
+                <div class="m76-cat__foot">
+                  <span class="m76-cat__year">{{ product.type }}</span>
+                  <span class="m76-cat__price">
+                    {%- if product.metafields.m76.rental_only.value -%}
+                      {{ 'm76.general.rental_only' | t }}
+                    {%- elsif product.price == 0 -%}
+                      {{ 'm76.general.on_request' | t }}
+                    {%- else -%}
+                      {{ product.price | money_without_currency | remove: ',00' }} €
+                    {%- endif -%}
+                  </span>
+                </div>
+              </div>
+            </a>
+          {%- else -%}
+            <p class="m76-cat__empty">{{ 'm76.general.no_products' | t }}</p>
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="m76-cat__pagination" aria-label="{{ 'm76.general.pagination' | t }}">
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- else -%}
+                <span class="{% if part.title == paginate.current_page %}current{% endif %}">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </nav>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "M76 Catalogo",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 9,
+      "max": 48,
+      "step": 3,
+      "label": "Prodotti per pagina",
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "categories_title",
+      "label": "Titolo gruppo categorie",
+      "default": "Categoria"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoria",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collezione" },
+        { "type": "text", "id": "label", "label": "Etichetta (vuoto = nome collezione)" },
+        { "type": "collection", "id": "parent", "label": "Categoria genitore (vuoto = primo livello)" }
+      ]
+    }
+  ],
+  "max_blocks": 40,
+  "presets": [{ "name": "M76 Catalogo" }]
+}
+{% endschema %}

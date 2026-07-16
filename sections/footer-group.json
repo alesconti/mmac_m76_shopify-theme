@@ -13,8 +13,36 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "footer-nav": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Navigazione",
+            "menu": "footer-navigazione"
+          }
+        },
+        "footer-info": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Informazioni",
+            "menu": "footer"
+          }
+        },
+        "footer-contatti": {
+          "type": "text",
+          "settings": {
+            "heading": "Contatti",
+            "subtext": "via Merano 18, Milano\n+39 02 39525097\ninfo@magazzino76.it\nLun–Sab · 10:00–19:30"
+          }
+        }
+      },
+      "block_order": [
+        "footer-nav",
+        "footer-info",
+        "footer-contatti"
+      ],
       "settings": {
-        "tagline": "«Vi giudicheranno anche dai mobili ereditati.»\n— Dino Gavina",
+        "tagline": "ANTIQUARIATO\nMODERNARIATO\nDESIGN STORICIZZATO",
         "vat": "P.IVA 11137560964"
       }
     }

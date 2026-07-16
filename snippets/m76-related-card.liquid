@@ -1,0 +1,25 @@
+{%- comment -%}
+  Card prodotto correlato, usata da sections/m76-related.liquid
+  Parametri: related (product)
+{%- endcomment -%}
+<a class="m76-rel__card" href="{{ related.url }}">
+  <div class="m76-rel__thumb">
+    {%- if related.featured_media -%}
+      {{
+        related.featured_media
+        | image_url: width: 600
+        | image_tag: loading: 'lazy', alt: related.featured_media.alt | default: related.title, sizes: '(max-width: 989px) 50vw, 25vw', widths: '300, 450, 600'
+      }}
+    {%- endif -%}
+  </div>
+  <div class="m76-rel__info">
+    <p class="m76-rel__name">{{ related.title }}</p>
+    <p class="m76-rel__vendor">{{ related.vendor }}</p>
+    <div class="m76-rel__foot">
+      <span class="m76-rel__type">{{ related.type }}</span>
+      <span class="m76-rel__price">
+        {%- if related.price == 0 -%}{{ 'm76.general.on_request' | t }}{%- else -%}{{ related.price | money_without_currency | remove: ',00' }} €{%- endif -%}
+      </span>
+    </div>
+  </div>
+</a>

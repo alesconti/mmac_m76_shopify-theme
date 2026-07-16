@@ -1,0 +1,53 @@
+<style>
+.m76-band {
+  background: #f8f8f4;
+  padding: 28px 52px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.m76-band__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #1d2440;
+  margin: 0;
+  flex-shrink: 0;
+}
+.m76-band__text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #1d2440;
+  opacity: .75;
+  line-height: 1.7;
+  margin: 0;
+  border-left: 1px solid #e4e4dc;
+  padding-left: 40px;
+}
+@media (max-width: 749px) {
+  .m76-band { flex-direction: column; align-items: flex-start; gap: 12px; padding: 28px 20px; }
+  .m76-band__text { border-left: none; padding-left: 0; }
+}
+</style>
+
+<section class="m76-band">
+  {%- if section.settings.title != blank -%}
+    <h2 class="m76-band__title">{{ section.settings.title }}</h2>
+  {%- endif -%}
+  {%- if section.settings.text != blank -%}
+    <div class="m76-band__text">{{ section.settings.text }}</div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "M76 Fascia con titolo",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Privati" },
+    { "type": "richtext", "id": "text", "label": "Testo" }
+  ],
+  "presets": [{ "name": "M76 Fascia con titolo" }]
+}
+{% endschema %}

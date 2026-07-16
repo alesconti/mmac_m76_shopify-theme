@@ -93,6 +93,132 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 2px;
 }
 
+/* Products mega-dropdown */
+.m76-nav__links li { position: relative; display: flex; align-items: center; }
+.m76-nav__links li.m76-nav__item--dropdown { position: static; }
+
+.m76-nav__item--dropdown:hover .m76-products-dropdown,
+.m76-nav__item--dropdown:focus-within .m76-products-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.m76-products-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #fff;
+  padding: 36px 52px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 210;
+}
+
+.m76-products-dropdown__inner {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.m76-products-dropdown__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.m76-products-dropdown__title {
+  font-family: var(--m76-serif);
+  font-size: 20px;
+  color: var(--m76-navy);
+}
+
+.m76-products-dropdown__all {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--m76-muted);
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.m76-products-dropdown__all:hover { opacity: .5; }
+
+.m76-products-dropdown__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.m76-products-dropdown__grid a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--m76-navy);
+  padding: 8px 16px 12px;
+  border-radius: 4px;
+  transition: opacity .2s;
+}
+.m76-products-dropdown__grid a:hover { opacity: .5; }
+
+.m76-products-dropdown__grid svg {
+  width: 52px;
+  height: 52px;
+  stroke: var(--m76-navy);
+  fill: none;
+  stroke-width: 1.2;
+}
+
+.m76-products-dropdown__grid span {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Language selector */
+.m76-lang {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 4px;
+}
+.m76-lang__item {
+  font-family: var(--m76-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: #8a8c96;
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color .2s;
+}
+.m76-lang__item:hover { color: var(--m76-navy); }
+.m76-lang__item--active {
+  color: var(--m76-navy);
+  font-weight: 600;
+  cursor: default;
+}
+.m76-lang__sep { font-size: 10px; color: #d4d4cc; }
+.m76-lang--drawer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--m76-border);
+}
+.m76-lang--drawer .m76-lang__item { font-size: 13px; }
+
 /* Icons */
 .m76-nav__icons { display: flex; gap: 22px; align-items: center; }
 
@@ -116,6 +242,9 @@ h1, h2, h3, h4, h5, h6 {
   stroke: var(--m76-navy);
   fill: none;
   stroke-width: 1.4;
+}
+.m76-nav__icon--search svg {
+  stroke-width: 2.2;
 }
 
 /* Cart count bubble */
@@ -213,6 +342,72 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity .2s;
 }
 .m76-drawer__nav li a:hover { opacity: .5; }
+
+/* Drawer — Prodotti dropdown */
+.m76-drawer__item--dropdown { border-bottom: 1px solid var(--m76-border); }
+.m76-drawer__details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--m76-navy);
+  padding: 14px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.m76-drawer__details summary::-webkit-details-marker { display: none; }
+.m76-drawer__chevron {
+  width: 14px;
+  height: 14px;
+  stroke: var(--m76-navy);
+  transition: transform .2s ease;
+  flex-shrink: 0;
+}
+.m76-drawer__details[open] .m76-drawer__chevron { transform: rotate(180deg); }
+
+.m76-drawer__submenu {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 4px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.m76-drawer__submenu li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--m76-navy);
+  text-decoration: none;
+  padding: 12px 4px;
+  border: none;
+}
+.m76-quote__note-text p { margin: 0; }
+
+/* stroke-width compensa il ridimensionamento del viewBox 56 a 28px */
+.m76-drawer__submenu li a svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--m76-navy);
+  fill: none;
+  stroke-width: 2.2;
+}
+.m76-drawer__submenu-all {
+  grid-column: 1 / -1;
+  flex-direction: row !important;
+  justify-content: center;
+  font-size: 11px !important;
+  color: var(--m76-muted) !important;
+  padding: 10px 0 !important;
+}
 
 /* ============================================================
    M76 FOOTER

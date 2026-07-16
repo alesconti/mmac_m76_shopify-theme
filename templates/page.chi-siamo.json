@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "hero": {
+      "type": "m76-page-hero",
+      "settings": {
+        "image": "shopify://shop_images/Magazzino76_interni00072.jpg",
+        "title": "Chi siamo",
+        "subtitle": "Non un semplice magazzino: negozio e spazio espositivo di antiquariato, modernariato e design a Milano."
+      }
+    },
+    "intro": {
+      "type": "m76-intro-stats",
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": { "value": "10+", "label": "Anni di attività" }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": { "value": "2.400+", "label": "Pezzi in catalogo" }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": { "value": "400+", "label": "Designer rappresentati" }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": { "value": "100%", "label": "Restauro artigianale" }
+        }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"],
+      "settings": {
+        "heading": "Non un semplice magazzino.",
+        "body": "<p>Magazzino76 è un negozio e uno spazio espositivo in continua evoluzione, dove convivono arredi di antiquariato, modernariato e design italiano e internazionale, insieme a pezzi unici da collezione, tutti disponibili per l'acquisto o il noleggio.</p><p>Ogni pezzo viene valutato e, se necessario, restaurato nel laboratorio interno prima di essere messo in vendita, grazie a una rete di artigiani specializzati selezionata in dieci anni di attività.</p>",
+        "cta_label": "Scopri i prodotti",
+        "cta_link": "/collections/all"
+      }
+    },
+    "storia": {
+      "type": "m76-image-editorial",
+      "settings": {
+        "image": "shopify://shop_images/Magazzino76_interni00036.jpg",
+        "flip": true,
+        "eyebrow": "La storia",
+        "heading": "Da via Padova a via Merano.",
+        "body": "<p>Fondato nel 2016 da Federico Bellucci nel cuore di via Padova a Milano, Magazzino76 è il risultato della passione e dell'esperienza di un team che ogni giorno ricerca mobili, oggetti e complementi d'arredo capaci di raccontare una storia.</p><p>Oggi Magazzino76 si trova in via Merano 18, sempre a Milano, in una corte più ampia, funzionale e accogliente, che riflette al meglio la sua identità e la sua continua evoluzione.</p>"
+      }
+    },
+    "visita": {
+      "type": "m76-title-band",
+      "settings": {
+        "title": "Vieni a trovarci",
+        "text": "<p>Showroom in via Merano 18, Milano · Lun–Sab · 10:00–19:30 · +39 02 39525097 · info@magazzino76.it</p>"
+      }
+    }
+  },
+  "order": ["hero", "storia", "intro", "visita"]
+}

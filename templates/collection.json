@@ -1,45 +1,146 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main-collection-banner": {
-      "type": "main-collection-banner",
+    "catalog": {
+      "type": "m76-collection",
+      "blocks": {
+        "cat-sedute": {
+          "type": "category",
+          "settings": { "collection": "sedute" }
+        },
+        "sub-sedie": {
+          "type": "category",
+          "settings": { "collection": "sedie", "parent": "sedute" }
+        },
+        "sub-poltrone": {
+          "type": "category",
+          "settings": { "collection": "poltrone-e-chaise-longue", "parent": "sedute" }
+        },
+        "sub-divani": {
+          "type": "category",
+          "settings": { "collection": "divani", "parent": "sedute" }
+        },
+        "sub-sgabelli": {
+          "type": "category",
+          "settings": { "collection": "sgabelli", "parent": "sedute" }
+        },
+        "sub-sedute-esterno": {
+          "type": "category",
+          "settings": { "collection": "sedute-da-esterno", "parent": "sedute" }
+        },
+        "sub-letti": {
+          "type": "category",
+          "settings": { "collection": "letti-e-daybed", "parent": "sedute" }
+        },
+        "cat-tavoli": {
+          "type": "category",
+          "settings": { "collection": "tavoli" }
+        },
+        "sub-tavoli-pranzo": {
+          "type": "category",
+          "settings": { "collection": "tavoli-da-pranzo", "parent": "tavoli" }
+        },
+        "sub-tavolini": {
+          "type": "category",
+          "settings": { "collection": "tavoli-da-caffe-e-tavolini", "parent": "tavoli" }
+        },
+        "cat-lampade": {
+          "type": "category",
+          "settings": { "collection": "lampade" }
+        },
+        "sub-lampadari": {
+          "type": "category",
+          "settings": { "collection": "lampadari", "parent": "lampade" }
+        },
+        "sub-lampade-tavolo": {
+          "type": "category",
+          "settings": { "collection": "lampade-da-tavolo", "parent": "lampade" }
+        },
+        "sub-lampade-terra": {
+          "type": "category",
+          "settings": { "collection": "lampade-da-terra", "parent": "lampade" }
+        },
+        "sub-lampade-parete": {
+          "type": "category",
+          "settings": { "collection": "lampade-da-parete", "parent": "lampade" }
+        },
+        "cat-mobili": {
+          "type": "category",
+          "settings": { "collection": "mobili" }
+        },
+        "sub-sideboard": {
+          "type": "category",
+          "settings": { "collection": "sideboard-e-mobili-contenitore", "parent": "mobili" }
+        },
+        "cat-specchi": {
+          "type": "category",
+          "settings": { "collection": "specchi" }
+        },
+        "sub-specchi-parete": {
+          "type": "category",
+          "settings": { "collection": "specchi-da-parete", "parent": "specchi" }
+        },
+        "sub-specchi-tavolo": {
+          "type": "category",
+          "settings": { "collection": "specchi-da-tavolo", "parent": "specchi" }
+        },
+        "sub-specchi-terra": {
+          "type": "category",
+          "settings": { "collection": "specchi-da-terra", "parent": "specchi" }
+        },
+        "cat-decorativi": {
+          "type": "category",
+          "settings": { "collection": "decorativi" }
+        },
+        "sub-vasi": {
+          "type": "category",
+          "settings": { "collection": "vasi-e-sculture", "parent": "decorativi" }
+        },
+        "sub-quadri": {
+          "type": "category",
+          "settings": { "collection": "quadri-stampe-e-cornici", "parent": "decorativi" }
+        },
+        "sub-portaombrelli": {
+          "type": "category",
+          "settings": { "collection": "portaombrelli", "parent": "decorativi" }
+        },
+        "sub-posacenere": {
+          "type": "category",
+          "settings": { "collection": "posacenere", "parent": "decorativi" }
+        }
+      },
+      "block_order": [
+        "cat-sedute",
+        "sub-sedie",
+        "sub-poltrone",
+        "sub-divani",
+        "sub-sgabelli",
+        "sub-sedute-esterno",
+        "sub-letti",
+        "cat-tavoli",
+        "sub-tavoli-pranzo",
+        "sub-tavolini",
+        "cat-lampade",
+        "sub-lampadari",
+        "sub-lampade-tavolo",
+        "sub-lampade-terra",
+        "sub-lampade-parete",
+        "cat-mobili",
+        "sub-sideboard",
+        "cat-specchi",
+        "sub-specchi-parete",
+        "sub-specchi-tavolo",
+        "sub-specchi-terra",
+        "cat-decorativi",
+        "sub-vasi",
+        "sub-quadri",
+        "sub-portaombrelli",
+        "sub-posacenere"
+      ],
       "settings": {
-        "show_collection_description": true,
-        "show_collection_image": false,
-        "color_scheme": "scheme-1"
-      }
-    },
-    "main-collection-product-grid": {
-      "type": "main-collection-product-grid",
-      "settings": {
-        "products_per_page": 16,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "enable_filtering": true,
-        "filter_type": "horizontal",
-        "enable_sorting": true,
-        "columns_mobile": "2",
-        "padding_top": 20,
-        "padding_bottom": 68
+        "products_per_page": 24,
+        "categories_title": "Categoria"
       }
     }
   },
-  "order": [
-    "main-collection-banner",
-    "main-collection-product-grid"
-  ]
+  "order": ["catalog"]
 }

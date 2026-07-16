@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
     "password_page": {
@@ -283,7 +274,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -537,6 +527,66 @@
       "max_characters": "{{ max_chars }} characters max",
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
+    }
+  },
+  "m76": {
+    "general": {
+      "home": "Home",
+      "products_count": "{{ count }} products",
+      "search_placeholder": "Search by name, designer...",
+      "search_label": "Search the catalogue",
+      "sort_by": "Sort by",
+      "filters": "Filters",
+      "close_filters": "Close filters",
+      "apply": "Apply",
+      "reset_filters": "Clear filters ({{ count }})",
+      "no_products": "No products found with the selected filters.",
+      "pagination": "Pagination",
+      "on_request": "On request",
+      "new_arrival": "Just arrived",
+      "for_sale": "For sale",
+      "rental_only": "Rental only",
+      "all_products": "All products",
+      "subcategories_of": "Show subcategories of {{ title }}"
+    },
+    "product": {
+      "available": "Available",
+      "sold": "Sold",
+      "designer": "Designer",
+      "producer": "Producer",
+      "view_all_by": "View all products",
+      "tab_description": "Description",
+      "tab_details": "Details",
+      "tab_shipping": "Shipping",
+      "spec_code": "Code",
+      "spec_origin": "Origin",
+      "spec_material": "Material",
+      "spec_dimensions": "Dimensions",
+      "spec_period": "Period",
+      "spec_style": "Style",
+      "spec_weight": "Weight",
+      "spec_condition": "Condition",
+      "vat_included": "VAT included",
+      "quantity": "Quantity",
+      "qty_decrease": "Decrease quantity",
+      "qty_increase": "Increase quantity",
+      "add_to_cart": "Add to cart",
+      "add_to_wishlist": "Add to wishlist",
+      "share": "Share",
+      "product_code": "Product code",
+      "image_n": "Image {{ n }}"
+    },
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "notes": "Additional notes",
+      "select_placeholder": "Select...",
+      "success": "Thank you! Your request has been sent: we will reply within 24 hours.",
+      "error": "An error occurred: please check your email address and try again."
+    },
+    "blog": {
+      "empty": "No events published at the moment."
     }
   }
 }

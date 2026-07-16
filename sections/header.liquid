@@ -28,14 +28,84 @@
   <ul class="m76-drawer__nav">
     {%- if section.settings.menu != blank -%}
       {%- for link in section.settings.menu.links -%}
-        <li>
-          <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>
-            {{ link.title | escape }}
-          </a>
-        </li>
+        {%- assign is_products_link = false -%}
+        {%- if link.title == 'Prodotti' or link.url == routes.all_products_collection_url -%}
+          {%- assign is_products_link = true -%}
+        {%- endif -%}
+        {%- if is_products_link -%}
+          <li class="m76-drawer__item--dropdown">
+            <details class="m76-drawer__details">
+              <summary>
+                <span>{{ link.title | escape }}</span>
+                <svg class="m76-drawer__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <ul class="m76-drawer__submenu" role="list">
+                <li>
+                  <a href="{{ routes.root_url }}collections/sedute">
+                    {{ 'icon-m76-sedute.svg' | inline_asset_content }}
+                    <span>{{ collections['sedute'].title | default: 'Sedute' }}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ routes.root_url }}collections/tavoli">
+                    {{ 'icon-m76-tavoli.svg' | inline_asset_content }}
+                    <span>{{ collections['tavoli'].title | default: 'Tavoli' }}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ routes.root_url }}collections/lampade">
+                    {{ 'icon-m76-lampade.svg' | inline_asset_content }}
+                    <span>{{ collections['lampade'].title | default: 'Lampade' }}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ routes.root_url }}collections/mobili">
+                    {{ 'icon-m76-mobili.svg' | inline_asset_content }}
+                    <span>{{ collections['mobili'].title | default: 'Mobili' }}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ routes.root_url }}collections/specchi">
+                    {{ 'icon-m76-specchi.svg' | inline_asset_content }}
+                    <span>{{ collections['specchi'].title | default: 'Specchi' }}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ routes.root_url }}collections/decorativi">
+                    {{ 'icon-m76-decorativi.svg' | inline_asset_content }}
+                    <span>{{ collections['decorativi'].title | default: 'Decorativi' }}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ link.url }}" class="m76-drawer__submenu-all">{{ 'm76.general.all_products' | t }} →</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+        {%- else -%}
+          <li>
+            <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>
+              {{ link.title | escape }}
+            </a>
+          </li>
+        {%- endif -%}
       {%- endfor -%}
     {%- endif -%}
   </ul>
+  {%- if localization.available_languages.size > 1 -%}
+    {%- form 'localization', class: 'm76-lang m76-lang--drawer' -%}
+      {%- for language in localization.available_languages -%}
+        {%- if language.iso_code == localization.language.iso_code -%}
+          <span class="m76-lang__item m76-lang__item--active">{{ language.iso_code | upcase }}</span>
+        {%- else -%}
+          <button type="submit" class="m76-lang__item" name="locale_code" value="{{ language.iso_code }}" lang="{{ language.iso_code }}" aria-label="{{ language.endonym_name | capitalize }}">
+            {{ language.iso_code | upcase }}
+          </button>
+        {%- endif -%}
+        {%- unless forloop.last -%}<span class="m76-lang__sep">/</span>{%- endunless -%}
+      {%- endfor -%}
+    {%- endform -%}
+  {%- endif -%}
 </div>
 
 <!-- Main Header -->
@@ -70,7 +140,11 @@
     {%- if section.settings.menu != blank -%}
       <ul class="m76-nav__links" role="list">
         {%- for link in section.settings.menu.links -%}
-          <li>
+          {%- assign is_products_link = false -%}
+          {%- if link.title == 'Prodotti' or link.url == routes.all_products_collection_url -%}
+            {%- assign is_products_link = true -%}
+          {%- endif -%}
+          <li class="{% if is_products_link %}m76-nav__item--dropdown{% endif %}">
             <a
               href="{{ link.url }}"
               class="m76-nav__link{% if link.active %} m76-nav__link--active{% endif %}"
@@ -78,6 +152,54 @@
             >
               {{ link.title | escape }}
             </a>
+            {%- if is_products_link -%}
+              <div class="m76-products-dropdown">
+                <div class="m76-products-dropdown__inner">
+                <div class="m76-products-dropdown__head">
+                  <span class="m76-products-dropdown__title">{{ link.title }}</span>
+                  <a href="{{ routes.all_products_collection_url }}" class="m76-products-dropdown__all">{{ 'm76.general.all_products' | t }} →</a>
+                </div>
+                <ul class="m76-products-dropdown__grid" role="list">
+                  <li>
+                    <a href="{{ routes.root_url }}collections/sedute">
+                      {{ 'icon-m76-sedute.svg' | inline_asset_content }}
+                      <span>{{ collections['sedute'].title | default: 'Sedute' }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ routes.root_url }}collections/tavoli">
+                      {{ 'icon-m76-tavoli.svg' | inline_asset_content }}
+                      <span>{{ collections['tavoli'].title | default: 'Tavoli' }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ routes.root_url }}collections/lampade">
+                      {{ 'icon-m76-lampade.svg' | inline_asset_content }}
+                      <span>{{ collections['lampade'].title | default: 'Lampade' }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ routes.root_url }}collections/mobili">
+                      {{ 'icon-m76-mobili.svg' | inline_asset_content }}
+                      <span>{{ collections['mobili'].title | default: 'Mobili' }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ routes.root_url }}collections/specchi">
+                      {{ 'icon-m76-specchi.svg' | inline_asset_content }}
+                      <span>{{ collections['specchi'].title | default: 'Specchi' }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ routes.root_url }}collections/decorativi">
+                      {{ 'icon-m76-decorativi.svg' | inline_asset_content }}
+                      <span>{{ collections['decorativi'].title | default: 'Decorativi' }}</span>
+                    </a>
+                  </li>
+                </ul>
+                </div>
+              </div>
+            {%- endif -%}
           </li>
         {%- endfor -%}
       </ul>
@@ -86,8 +208,24 @@
     <!-- Icons -->
     <div class="m76-nav__icons">
 
+      <!-- Language selector -->
+      {%- if localization.available_languages.size > 1 -%}
+        {%- form 'localization', class: 'm76-lang' -%}
+          {%- for language in localization.available_languages -%}
+            {%- if language.iso_code == localization.language.iso_code -%}
+              <span class="m76-lang__item m76-lang__item--active">{{ language.iso_code | upcase }}</span>
+            {%- else -%}
+              <button type="submit" class="m76-lang__item" name="locale_code" value="{{ language.iso_code }}" lang="{{ language.iso_code }}" aria-label="{{ language.endonym_name | capitalize }}">
+                {{ language.iso_code | upcase }}
+              </button>
+            {%- endif -%}
+            {%- unless forloop.last -%}<span class="m76-lang__sep">/</span>{%- endunless -%}
+          {%- endfor -%}
+        {%- endform -%}
+      {%- endif -%}
+
       <!-- Search -->
-      <a href="{{ routes.search_url }}" class="m76-nav__icon" aria-label="{{ 'general.search.search' | t }}">
+      <a href="{{ routes.search_url }}" class="m76-nav__icon m76-nav__icon--search" aria-label="{{ 'general.search.search' | t }}">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
       </a>
 

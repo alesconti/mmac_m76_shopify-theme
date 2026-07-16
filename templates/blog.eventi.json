@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "hero": {
+      "type": "m76-page-hero",
+      "settings": {
+        "image": "shopify://shop_images/Magazzino76_interni00072.jpg",
+        "title": "Eventi",
+        "subtitle": "Prendiamo parte a eventi legati al mondo del design e dell'arte."
+      }
+    },
+    "list": {
+      "type": "m76-blog-list",
+      "settings": {
+        "heading": "",
+        "body": "<p>Magazzino76 si articola in diversi ambienti di tipo industriale: vari depositi, uno showroom dedicato all'esposizione, un laboratorio di restauro, un'area per le spedizioni e gli uffici, attualmente in pieno sviluppo.</p><p>In questi spazi Magazzino76 non solo accoglie e presenta le proprie collezioni, ma organizza e partecipa anche a eventi legati al mondo del design e dell'arte. Questi momenti di incontro rappresentano un'occasione per condividere la passione per il design e il restauro, promuovendo un dialogo continuo tra passato, presente e futuro dell'arredo.</p>"
+      }
+    }
+  },
+  "order": ["hero", "list"]
+}

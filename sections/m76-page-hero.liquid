@@ -1,0 +1,94 @@
+<style>
+.m76-page-hero {
+  position: relative;
+  height: clamp(340px, 34vw, 540px);
+  background: var(--m76-navy, #1d2440);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.m76-page-hero__img {
+  position: absolute;
+  inset: 0;
+}
+.m76-page-hero__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.m76-page-hero__img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(29, 36, 64, .72), rgba(29, 36, 64, .35));
+}
+.m76-page-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 52px 44px;
+  max-width: 640px;
+}
+.m76-page-hero__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 5.2vw, 80px);
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 10px;
+  line-height: 1.05;
+}
+.m76-page-hero__subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .75);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 420px;
+}
+@media (max-width: 749px) {
+  .m76-page-hero__content { padding: 0 20px 32px; }
+}
+</style>
+
+<section class="m76-page-hero">
+  {%- if section.settings.image != blank -%}
+    <div class="m76-page-hero__img">
+      {{
+        section.settings.image
+        | image_url: width: 2400
+        | image_tag: loading: 'eager', alt: section.settings.image.alt | default: page.title, sizes: '100vw', widths: '800, 1200, 1600, 2400'
+      }}
+    </div>
+  {%- endif -%}
+  <div class="m76-page-hero__content">
+    <h1 class="m76-page-hero__title">{{ section.settings.title | default: page.title }}</h1>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="m76-page-hero__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "M76 Hero pagina",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine di sfondo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titolo (vuoto = titolo pagina)"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sottotitolo"
+    }
+  ],
+  "presets": [{ "name": "M76 Hero pagina" }]
+}
+{% endschema %}

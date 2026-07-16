@@ -1,0 +1,726 @@
+<style>
+.m76-pdp { padding: 20px 52px 64px; }
+.m76-pdp__crumbs {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8c96;
+  margin: 0 0 20px;
+}
+.m76-pdp__crumbs a { color: #8a8c96; text-decoration: none; }
+.m76-pdp__crumbs a:hover { color: #1d2440; }
+
+.m76-pdp__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Gallery */
+.m76-pdp__main-img {
+  position: relative;
+  aspect-ratio: 1;
+  background: #f8f8f4;
+  overflow: hidden;
+}
+.m76-pdp__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.m76-pdp__slide.is-active { opacity: 1; }
+.m76-pdp__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.m76-pdp__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #f4f4d0;
+  color: #1d2440;
+  font-family: 'Poppins', sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  z-index: 2;
+}
+.m76-pdp__thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.m76-pdp__thumbs button {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 1px solid #e4e4dc;
+  background: #f8f8f4;
+  cursor: pointer;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.m76-pdp__thumbs button.is-active { border-color: #1d2440; }
+.m76-pdp__thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Info */
+.m76-pdp__eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.m76-pdp__eyebrow a { color: #8a8c96; text-decoration: none; }
+.m76-pdp__eyebrow a:hover { color: #1d2440; }
+.m76-pdp__avail--in { color: #2c7a3f; }
+.m76-pdp__avail--out { color: #b4443c; }
+.m76-pdp__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 2.4vw, 38px);
+  font-weight: 400;
+  color: #1d2440;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+.m76-pdp__designer-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8a8c96;
+  margin: 0 0 4px;
+}
+.m76-pdp__designer {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+  color: #1d2440;
+  margin: 0 0 4px;
+}
+.m76-pdp__designer--last {
+  margin: 0 0 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e4e4dc;
+}
+.m76-pdp__designer a {
+  font-style: normal;
+  font-size: 12px;
+  color: #8a8c96;
+  text-decoration: none;
+  margin-left: 8px;
+}
+.m76-pdp__designer a:hover { color: #1d2440; }
+
+/* Tabs */
+.m76-pdp__tabs {
+  display: flex;
+  gap: 26px;
+  border-bottom: 1px solid #e4e4dc;
+  margin-bottom: 20px;
+}
+.m76-pdp__tab {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8c96;
+  background: none;
+  border: none;
+  padding: 0 2px 12px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.m76-pdp__tab.is-active { color: #1d2440; border-bottom-color: #1d2440; }
+.m76-pdp__panel { display: none; }
+.m76-pdp__panel.is-active { display: block; }
+.m76-pdp__desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #1d2440;
+  line-height: 1.75;
+}
+.m76-pdp__desc p { margin: 0 0 14px; }
+.m76-pdp__dims {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  color: #1d2440;
+  background: #f8f8f4;
+  border: 1px solid #e4e4dc;
+  padding: 7px 12px;
+  margin-top: 4px;
+}
+.m76-pdp__dims svg { width: 13px; height: 13px; stroke: #8a8c96; fill: none; stroke-width: 1.4; }
+.m76-pdp__spec { width: 100%; border-collapse: collapse; }
+.m76-pdp__spec tr { border-bottom: 1px solid #efefe9; }
+.m76-pdp__spec th {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8c96;
+  text-align: left;
+  padding: 11px 16px 11px 0;
+  width: 120px;
+  vertical-align: top;
+}
+.m76-pdp__spec td {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #1d2440;
+  padding: 11px 0;
+}
+
+/* Price + buy */
+.m76-pdp__price-row { display: flex; align-items: baseline; gap: 10px; margin: 26px 0 8px; }
+.m76-pdp__price {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  color: #1d2440;
+}
+.m76-pdp__vat {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: #8a8c96;
+}
+.m76-pdp__instore {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #1d2440;
+  margin: 0 0 22px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.m76-pdp__instore::before {
+  content: '';
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #2c7a3f;
+  display: inline-block;
+}
+.m76-pdp__qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.m76-pdp__qty-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8c96;
+}
+.m76-pdp__qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e4e4dc;
+}
+.m76-pdp__qty button {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  background: none;
+  border: none;
+  width: 34px; height: 36px;
+  cursor: pointer;
+  color: #1d2440;
+}
+.m76-pdp__qty input {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  width: 40px;
+  height: 36px;
+  border: none;
+  border-left: 1px solid #e4e4dc;
+  border-right: 1px solid #e4e4dc;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+.m76-pdp__qty input::-webkit-outer-spin-button, .m76-pdp__qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.m76-pdp__atc {
+  display: block;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: #1d2440;
+  border: none;
+  padding: 17px;
+  cursor: pointer;
+  transition: opacity .2s;
+  margin-bottom: 10px;
+}
+.m76-pdp__atc:hover { opacity: .88; }
+.m76-pdp__atc[disabled] { background: #b9bac2; cursor: not-allowed; }
+.m76-pdp__wish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #1d2440;
+  background: #fff;
+  border: 1px solid #e4e4dc;
+  padding: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.m76-pdp__wish:hover { border-color: #1d2440; }
+.m76-pdp__wish svg { width: 14px; height: 14px; stroke: #1d2440; fill: none; stroke-width: 1.4; }
+
+/* Service icons */
+.m76-pdp__services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+  margin: 26px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid #e4e4dc;
+}
+.m76-pdp__service {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #1d2440;
+}
+.m76-pdp__service svg { width: 14px; height: 14px; stroke: #8a8c96; fill: none; stroke-width: 1.4; flex-shrink: 0; }
+
+/* Share + code */
+.m76-pdp__share {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 10px;
+}
+.m76-pdp__share-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #1d2440;
+}
+.m76-pdp__share a { display: flex; }
+.m76-pdp__share svg { width: 15px; height: 15px; stroke: #8a8c96; fill: none; stroke-width: 1.4; transition: stroke .2s; }
+.m76-pdp__share a:hover svg { stroke: #1d2440; }
+.m76-pdp__code {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #8a8c96;
+  margin: 0;
+}
+
+@media (max-width: 989px) {
+  .m76-pdp { padding: 16px 20px 48px; }
+  .m76-pdp__layout { grid-template-columns: 1fr; gap: 24px; }
+
+  .m76-pdp__main-img {
+    display: flex;
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .m76-pdp__main-img::-webkit-scrollbar { display: none; }
+  .m76-pdp__slide {
+    position: static;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    opacity: 1;
+    scroll-snap-align: start;
+  }
+
+  .m76-pdp__thumbs {
+    flex-wrap: nowrap;
+    max-width: 352px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: #d8d8d0 transparent;
+  }
+  .m76-pdp__thumbs::-webkit-scrollbar { height: 4px; }
+  .m76-pdp__thumbs::-webkit-scrollbar-track { background: transparent; }
+  .m76-pdp__thumbs::-webkit-scrollbar-thumb { background: #d8d8d0; }
+}
+</style>
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign category = product.type
+  assign cat_collection = blank
+  for c in product.collections
+    if c.title == product.type
+      assign cat_collection = c
+    endif
+  endfor
+
+  assign creators = product.metafields.m76.creator.value
+  assign designer_name = blank
+  assign producer_name = blank
+  if creators.size > 0
+    assign designer_name = creators[0]
+  endif
+  if creators.size > 1
+    assign producer_name = creators[1]
+  endif
+
+  assign width_cm = product.metafields.m76.width_cm.value
+  assign depth_cm = product.metafields.m76.depth_cm.value
+  assign height_cm = product.metafields.m76.height_cm.value
+  assign diameter_cm = product.metafields.m76.diameter_cm.value
+  assign seat_height_cm = product.metafields.m76.seat_height_cm.value
+
+  assign dims = ''
+  if width_cm > 0
+    assign w = width_cm | round
+    assign dims = dims | append: 'L' | append: w
+  endif
+  if depth_cm > 0
+    assign d = depth_cm | round
+    if dims != blank
+      assign dims = dims | append: ' × '
+    endif
+    assign dims = dims | append: 'P' | append: d
+  endif
+  if height_cm > 0
+    assign h = height_cm | round
+    if dims != blank
+      assign dims = dims | append: ' × '
+    endif
+    assign dims = dims | append: 'H' | append: h
+  endif
+  if diameter_cm > 0
+    assign dia = diameter_cm | round
+    if dims != blank
+      assign dims = dims | append: ' × '
+    endif
+    assign dims = dims | append: 'Ø' | append: dia
+  endif
+  if seat_height_cm > 0
+    assign sh = seat_height_cm | round
+    if dims != blank
+      assign dims = dims | append: ' — '
+    endif
+    assign dims = dims | append: 'H seduta ' | append: sh
+  endif
+  if dims != blank
+    assign dims = dims | append: ' cm'
+  endif
+-%}
+
+<section class="m76-pdp">
+  <nav class="m76-pdp__crumbs" aria-label="Breadcrumb">
+    <a href="{{ routes.all_products_collection_url }}">{{ 'm76.general.all_products' | t }}</a>
+    {%- if collection and collection.handle != 'all' %} / <a href="{{ collection.url }}">{{ collection.title }}</a>
+    {%- elsif cat_collection != blank %} / <a href="{{ cat_collection.url }}">{{ cat_collection.title }}</a>
+    {%- endif %} / {{ product.title | truncate: 40 }}
+  </nav>
+
+  <div class="m76-pdp__layout">
+
+    <div class="m76-pdp__gallery">
+      <div class="m76-pdp__main-img" id="m76-pdp-main">
+        {%- if product.tags contains 'nuovo-arrivo' -%}
+          <span class="m76-pdp__badge">{{ 'm76.general.new_arrival' | t }}</span>
+        {%- elsif variant.available and product.price > 0 -%}
+          <span class="m76-pdp__badge">{{ 'm76.general.for_sale' | t }}</span>
+        {%- endif -%}
+        {%- if product.media.size > 0 -%}
+          {%- for media in product.media -%}
+            <div class="m76-pdp__slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}">
+              <img
+                src="{{ media | image_url: width: 1200 }}"
+                alt="{{ media.alt | default: product.title | escape }}"
+                width="1200" height="1200"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+              >
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="m76-pdp__slide is-active">{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="m76-pdp__thumbs">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              class="{% if forloop.first %}is-active{% endif %}"
+              aria-label="{{ 'm76.product.image_n' | t: n: forloop.index }}"
+              data-index="{{ forloop.index0 }}"
+            >
+              <img src="{{ media | image_url: width: 128 }}" alt="" loading="lazy" width="64" height="64">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="m76-pdp__info">
+      <p class="m76-pdp__eyebrow">
+        {%- if collection and collection.handle != 'all' -%}
+          <a href="{{ collection.url }}">{{ collection.title }}</a>
+        {%- elsif cat_collection != blank -%}
+          <a href="{{ cat_collection.url }}">{{ cat_collection.title }}</a>
+        {%- elsif category != blank -%}
+          <span style="color:#8a8c96;">{{ category }}</span>
+        {%- endif -%}
+        {%- if variant.available -%}
+          <span class="m76-pdp__avail--in">· {{ 'm76.product.available' | t }}</span>
+        {%- else -%}
+          <span class="m76-pdp__avail--out">· {{ 'm76.product.sold' | t }}</span>
+        {%- endif -%}
+      </p>
+
+      <h1 class="m76-pdp__title">{{ product.title }}</h1>
+
+      {%- if designer_name != blank -%}
+        <p class="m76-pdp__designer-label">{{ 'm76.product.designer' | t }}</p>
+        <p class="m76-pdp__designer{% if producer_name == blank %} m76-pdp__designer--last{% endif %}">
+          {{ designer_name }}
+          <a href="{{ routes.collections_url }}/vendors?q={{ designer_name | url_encode }}">— {{ 'm76.product.view_all_by' | t }} →</a>
+        </p>
+      {%- elsif product.vendor != blank -%}
+        <p class="m76-pdp__designer-label">{{ 'm76.product.designer' | t }}</p>
+        <p class="m76-pdp__designer m76-pdp__designer--last">
+          {{ product.vendor }}
+          <a href="{{ routes.collections_url }}/vendors?q={{ product.vendor | url_encode }}">— {{ 'm76.product.view_all_by' | t }} →</a>
+        </p>
+      {%- endif -%}
+      {%- if producer_name != blank -%}
+        <p class="m76-pdp__designer-label">{{ 'm76.product.producer' | t }}</p>
+        <p class="m76-pdp__designer m76-pdp__designer--last">{{ producer_name }}</p>
+      {%- endif -%}
+
+      <div class="m76-pdp__tabs" role="tablist">
+        <button type="button" class="m76-pdp__tab is-active" data-panel="desc" role="tab">{{ 'm76.product.tab_description' | t }}</button>
+        <button type="button" class="m76-pdp__tab" data-panel="spec" role="tab">{{ 'm76.product.tab_details' | t }}</button>
+        <button type="button" class="m76-pdp__tab" data-panel="ship" role="tab">{{ 'm76.product.tab_shipping' | t }}</button>
+      </div>
+
+      <div class="m76-pdp__panel is-active" data-panel="desc">
+        <div class="m76-pdp__desc">{{ product.description }}</div>
+        {%- if dims != blank -%}
+          <span class="m76-pdp__dims">
+            <svg viewBox="0 0 24 24"><path d="M21 3 3 21"/><path d="M21 3v6"/><path d="M21 3h-6"/><path d="M3 21v-6"/><path d="M3 21h6"/></svg>
+            {{ dims }}
+          </span>
+        {%- endif -%}
+      </div>
+
+      <div class="m76-pdp__panel" data-panel="spec">
+        <table class="m76-pdp__spec">
+          {%- if variant.sku != blank -%}
+            <tr><th>{{ 'm76.product.spec_code' | t }}</th><td>{{ variant.sku }}</td></tr>
+          {%- endif -%}
+          {%- if product.metafields.m76.place_of_origin.value != blank -%}
+            <tr><th>{{ 'm76.product.spec_origin' | t }}</th><td>{{ product.metafields.m76.place_of_origin.value }}</td></tr>
+          {%- endif -%}
+          {%- if product.metafields.m76.material.value != blank -%}
+            <tr><th>{{ 'm76.product.spec_material' | t }}</th><td>{{ product.metafields.m76.material.value | join: ', ' }}</td></tr>
+          {%- endif -%}
+          {%- if dims != blank -%}
+            <tr><th>{{ 'm76.product.spec_dimensions' | t }}</th><td>{{ dims }}</td></tr>
+          {%- endif -%}
+          {%- if product.metafields.m76.period.value != blank -%}
+            <tr><th>{{ 'm76.product.spec_period' | t }}</th><td>{{ product.metafields.m76.period.value }}</td></tr>
+          {%- endif -%}
+          {%- if product.metafields.m76.style.value != blank -%}
+            <tr><th>{{ 'm76.product.spec_style' | t }}</th><td>{{ product.metafields.m76.style.value }}</td></tr>
+          {%- endif -%}
+        </table>
+      </div>
+
+      <div class="m76-pdp__panel" data-panel="ship">
+        <div class="m76-pdp__desc">{{ section.settings.shipping_text }}</div>
+      </div>
+
+      <div class="m76-pdp__price-row">
+        <span class="m76-pdp__price">
+          {%- if product.metafields.m76.rental_only.value -%}
+            {{ 'm76.general.rental_only' | t }}
+          {%- elsif product.price == 0 -%}
+            {{ 'm76.general.on_request' | t }}
+          {%- else -%}
+            {{ product.price | money_without_currency }} €
+          {%- endif -%}
+        </span>
+        {%- if product.price > 0 and product.metafields.m76.rental_only.value != true -%}
+          <span class="m76-pdp__vat">{{ 'm76.product.vat_included' | t }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- if variant.available and section.settings.instore_text != blank -%}
+        <p class="m76-pdp__instore">{{ section.settings.instore_text }}</p>
+      {%- endif -%}
+
+      {%- form 'product', product -%}
+        <input type="hidden" name="id" value="{{ variant.id }}">
+        <div class="m76-pdp__qty-row">
+          <span class="m76-pdp__qty-label">{{ 'm76.product.quantity' | t }}</span>
+          <div class="m76-pdp__qty">
+            <button type="button" aria-label="{{ 'm76.product.qty_decrease' | t }}" onclick="const i=this.parentElement.querySelector('input'); i.value = Math.max(1, parseInt(i.value)-1);">−</button>
+            <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'm76.product.quantity' | t }}">
+            <button type="button" aria-label="{{ 'm76.product.qty_increase' | t }}" onclick="const i=this.parentElement.querySelector('input'); i.value = parseInt(i.value)+1;">+</button>
+          </div>
+        </div>
+        <button type="submit" class="m76-pdp__atc" {% unless variant.available %}disabled{% endunless %}>
+          {%- if variant.available -%}{{ 'm76.product.add_to_cart' | t }}{%- else -%}{{ 'm76.product.sold' | t }}{%- endif -%}
+        </button>
+      {%- endform -%}
+
+      {%- if section.settings.show_wishlist -%}
+        <a class="m76-pdp__wish" href="{{ section.settings.wishlist_link | default: '/pages/lista-desideri' }}">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          {{ 'm76.product.add_to_wishlist' | t }}
+        </a>
+      {%- endif -%}
+
+      <div class="m76-pdp__services">
+        <span class="m76-pdp__service">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          {{ section.settings.service_1 }}
+        </span>
+        <span class="m76-pdp__service">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 4 0 3 3 0 5-3 0"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          {{ section.settings.service_2 }}
+        </span>
+        <span class="m76-pdp__service">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          {{ section.settings.service_3 }}
+        </span>
+        <span class="m76-pdp__service">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          {{ section.settings.service_4 }}
+        </span>
+      </div>
+
+      <div class="m76-pdp__share">
+        <span class="m76-pdp__share-label">{{ 'm76.product.share' | t }}</span>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="Condividi su Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ request.origin | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="Condividi su WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a href="mailto:?subject={{ product.title | url_encode }}&body={{ request.origin | append: product.url | url_encode }}" aria-label="Condividi via email">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        </a>
+      </div>
+
+      {%- if variant.sku != blank -%}
+        <p class="m76-pdp__code">{{ 'm76.product.product_code' | t }}: {{ variant.sku }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.m76-pdp__tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.m76-pdp__tab').forEach(function(t) { t.classList.remove('is-active'); });
+      document.querySelectorAll('.m76-pdp__panel').forEach(function(p) { p.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      document.querySelector('.m76-pdp__panel[data-panel="' + tab.dataset.panel + '"]').classList.add('is-active');
+    });
+  });
+
+  (function() {
+    var main = document.getElementById('m76-pdp-main');
+    if (!main) return;
+    var slides = Array.prototype.slice.call(main.querySelectorAll('.m76-pdp__slide'));
+    var thumbs = Array.prototype.slice.call(document.querySelectorAll('.m76-pdp__thumbs button'));
+    var mobileQuery = window.matchMedia('(max-width: 989px)');
+
+    function setActive(index) {
+      slides.forEach(function(s, i) { s.classList.toggle('is-active', i === index); });
+      thumbs.forEach(function(t, i) { t.classList.toggle('is-active', i === index); });
+      var activeThumb = thumbs[index];
+      if (activeThumb) activeThumb.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    }
+
+    thumbs.forEach(function(thumb, index) {
+      thumb.addEventListener('click', function() {
+        setActive(index);
+        if (mobileQuery.matches) {
+          main.scrollTo({ left: index * main.clientWidth, behavior: 'smooth' });
+        }
+      });
+    });
+
+    var scrollTimeout;
+    main.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        var index = Math.round(main.scrollLeft / main.clientWidth);
+        setActive(index);
+      }, 80);
+    }, { passive: true });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "M76 Scheda prodotto",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Testo tab Spedizione",
+      "default": "<p>Spedizione tramite corrieri specializzati in oggetti fragili. Tempi: 3–7 giorni lavorativi.</p><p>Ritiro in store possibile: via Merano 18, Milano — Lun–Sab 10:00–19:30.</p>"
+    },
+    {
+      "type": "text",
+      "id": "instore_text",
+      "label": "Testo disponibilità in store",
+      "default": "Disponibile in store · via Merano 18, Milano"
+    },
+    { "type": "header", "content": "Icone servizio" },
+    { "type": "text", "id": "service_1", "label": "Servizio 1", "default": "Visibile in store a Milano" },
+    { "type": "text", "id": "service_2", "label": "Servizio 2", "default": "Spedizione in tutta Italia" },
+    { "type": "text", "id": "service_3", "label": "Servizio 3", "default": "Restaurato prima della vendita" },
+    { "type": "text", "id": "service_4", "label": "Servizio 4", "default": "Supporto +39 02 39525097" },
+    { "type": "header", "content": "Preferiti" },
+    { "type": "checkbox", "id": "show_wishlist", "label": "Mostra bottone preferiti", "default": true },
+    { "type": "url", "id": "wishlist_link", "label": "Link preferiti" }
+  ],
+  "presets": [{ "name": "M76 Scheda prodotto" }]
+}
+{% endschema %}
